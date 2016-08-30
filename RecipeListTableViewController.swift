@@ -20,6 +20,7 @@ class RecipeListTableViewController: UITableViewController, UISearchBarDelegate,
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.searchResultsRecipes = recipes
                 self.tableView.reloadData()
+                print("its good")
             })
         }
         
