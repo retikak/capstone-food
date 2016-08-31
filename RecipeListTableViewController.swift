@@ -14,8 +14,14 @@ class RecipeListTableViewController: UITableViewController, UISearchBarDelegate,
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        // TODO:  test
+        
+        _ = RecipeController()
+        
         RecipeController.sharedController.getAllRecipes { (recipes) in
-                        
+            
             
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.searchResultsRecipes = recipes
@@ -23,6 +29,7 @@ class RecipeListTableViewController: UITableViewController, UISearchBarDelegate,
                 print("its good")
             })
         }
+        
         
     }
     
@@ -49,7 +56,7 @@ class RecipeListTableViewController: UITableViewController, UISearchBarDelegate,
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         guard let searchTerm = searchController.searchBar.text?.lowercaseString else {return}
         let resultsController = searchController.searchResultsController as? SearchResultsTableViewController
-        resultsController?.dataSource = RecipeController.recipes.filter({$0.recipeName.lowercaseString.containsString(searchTerm)})
+        resultsController?.dataSource = RecipeController.sharedController.recipes.filter({$0.recipeName.lowercaseString.containsString(searchTerm)})
         resultsController?.tableView.reloadData()
     }
     
@@ -63,14 +70,37 @@ class RecipeListTableViewController: UITableViewController, UISearchBarDelegate,
     
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCellWithIdentifier("RecipeCell", forIndexPath: indexPath) as? CustomRecipeTableViewCell else { return UITableViewCell() }
-        
-        let recipe = searchResultsRecipes[indexPath.row]
-        cell.sourceNameLabel.text = "source display name : \(recipe.sourceDisplayName)"
-        cell.recipeNameLabel.text = "recipe name: \(recipe.recipeName)"
-        cell.ratingLabel.text = String("rating is \(recipe.rating) out of 5")
-        return cell
+        if let cell = tableView.dequeueReusableCellWithIdentifier("RecipeCell", forIndexPath: indexPath) as? CustomRecipeTableViewCell      {
+            let recipe = searchResultsRecipes[indexPath.row]
+            let recipeImage = recipe.images[0]
+           // let mainImage = recipe.mainImages
+            if let url = NSURL(string: recipeImage) {
+                
+                ImageController.fetchImageAtURL(url) { (image) in
+                    if let image = image {
+                        cell.recipeImage.image = image
+                        cell.recipeImage.layer.cornerRadius = 5.0
+                        cell.recipeImage.clipsToBounds = true
+                    }
+                }
+            }
+            
+            cell.sourceNameLabel.text = "source display name : \(recipe.sourceDisplayName)"
+            cell.recipeNameLabel.text = "recipe name: \(recipe.recipeName)"
+            cell.ratingLabel.text = String("rating is \(recipe.rating) out of 5")
+           
+            
+            return cell
+            
+        } else {
+            
+            return CustomRecipeTableViewCell()
+        }
     }
+    
+    
+    
+    
     
     // MARK: - Navigation
     
@@ -84,6 +114,7 @@ class RecipeListTableViewController: UITableViewController, UISearchBarDelegate,
                 if let selectedRow = indexPath?.row {
                     let recipe = searchResultsRecipes[selectedRow]
                     detailVC.updateWithRecipe(recipe)
+                
                 }
             }
         }

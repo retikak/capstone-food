@@ -19,8 +19,8 @@
 		791147A41D6FA79900E1B932 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791147A31D6FA79900E1B932 /* Recipe.swift */; };
 		791147A61D6FA7BA00E1B932 /* RecipeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791147A51D6FA7BA00E1B932 /* RecipeController.swift */; };
 		791147A81D6FA7CD00E1B932 /* NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791147A71D6FA7CD00E1B932 /* NetworkController.swift */; };
-		791147AA1D6FA7DF00E1B932 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791147A91D6FA7DF00E1B932 /* Image.swift */; };
 		791147AC1D6FA7EF00E1B932 /* ImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791147AB1D6FA7EF00E1B932 /* ImageController.swift */; };
+		791D18951D7630A5000F4B59 /* GroceryListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791D18941D7630A5000F4B59 /* GroceryListTableViewController.swift */; };
 		79B8FAEB1D73AB47004883DF /* CustomRecipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B8FAEA1D73AB47004883DF /* CustomRecipeTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -39,8 +39,8 @@
 		791147A31D6FA79900E1B932 /* Recipe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 		791147A51D6FA7BA00E1B932 /* RecipeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecipeController.swift; path = ../RecipeController.swift; sourceTree = "<group>"; };
 		791147A71D6FA7CD00E1B932 /* NetworkController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetworkController.swift; path = ../NetworkController.swift; sourceTree = "<group>"; };
-		791147A91D6FA7DF00E1B932 /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		791147AB1D6FA7EF00E1B932 /* ImageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageController.swift; sourceTree = "<group>"; };
+		791D18941D7630A5000F4B59 /* GroceryListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroceryListTableViewController.swift; sourceTree = "<group>"; };
 		79B8FAEA1D73AB47004883DF /* CustomRecipeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomRecipeTableViewCell.swift; path = ../CustomRecipeTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -91,7 +91,6 @@
 			isa = PBXGroup;
 			children = (
 				791147A31D6FA79900E1B932 /* Recipe.swift */,
-				791147A91D6FA7DF00E1B932 /* Image.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -107,6 +106,7 @@
 		791147A11D6FA74200E1B932 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				791D18941D7630A5000F4B59 /* GroceryListTableViewController.swift */,
 				791147931D6F7FDA00E1B932 /* LoginSignUpChoiceViewController.swift */,
 				791147951D6F7FF900E1B932 /* LoginSignupViewController.swift */,
 				791147991D6F995A00E1B932 /* RecipeListTableViewController.swift */,
@@ -198,6 +198,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				791147821D6F696600E1B932 /* AppDelegate.swift in Sources */,
+				791D18951D7630A5000F4B59 /* GroceryListTableViewController.swift in Sources */,
 				7911479A1D6F995A00E1B932 /* RecipeListTableViewController.swift in Sources */,
 				791147A41D6FA79900E1B932 /* Recipe.swift in Sources */,
 				7911479E1D6FA1AD00E1B932 /* SearchResultsTableViewController.swift in Sources */,
@@ -208,7 +209,6 @@
 				79B8FAEB1D73AB47004883DF /* CustomRecipeTableViewCell.swift in Sources */,
 				791147941D6F7FDA00E1B932 /* LoginSignUpChoiceViewController.swift in Sources */,
 				791147A81D6FA7CD00E1B932 /* NetworkController.swift in Sources */,
-				791147AA1D6FA7DF00E1B932 /* Image.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -11,7 +11,25 @@ import Foundation
 
 class RecipeController {
     
-    static var recipes: [Recipe] = []
+    private (set) var recipes: [Recipe] = [] {
+        
+        didSet {
+            
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                print("got recipe")
+                
+            })
+        }
+        
+    }
+    
+    //TODO: test
+    init() {
+        getAllRecipes { (recipes) in
+            
+        }
+    }
+
     static let sharedController = RecipeController()
     
     private let baseURLKey = "https://api.yummly.com/v1"
@@ -39,7 +57,8 @@ class RecipeController {
     
     func getRecipeWithSearchTerm(searchTerm: String, completion: (recipes: [Recipe]) -> Void) {
         
-        let urlParameters = ["_app_id": appIdKey, "_app_key": apiKey, "q" : "\(searchTerm)", "maxResult": "15", "start": "0", "requirePictures": "true"]
+        let urlParameters = ["_app_id": appIdKey, "_app_key": apiKey, "q" : "\(searchTerm)", "maxResult": "15", "start": "0", "requirePictures": "true",
+        "allowedDiet": "390^Pescetarian", "alloweDiet[]": "388^Lacto vegetarian"]
         
         if let url = baseURL {
             NetworkController.performRequestForURL(url, httpMethod: .Get, urlParameters: urlParameters, body: nil , completion: { (data, error) in
@@ -75,11 +94,15 @@ class RecipeController {
         
         if let url = baseURL {
             NetworkController.performRequestForURL(url, httpMethod: .Get, urlParameters: urlParameters, body: nil , completion: { (data, error) in
-                if let data = data, let jsonAnyObject = try? NSJSONSerialization.JSONObjectWithData(data, options: []), let jsonDictionary = jsonAnyObject as? [String: AnyObject], let matchesArray = jsonDictionary["matches"] as? [[String: AnyObject]] {
+                if let data = data,
+                    let jsonAnyObject = try? NSJSONSerialization.JSONObjectWithData(data, options: []),
+                    let jsonDictionary = jsonAnyObject as? [String: AnyObject],
+                    let matchesArray = jsonDictionary["matches"] as? [[String: AnyObject]] {
                     
                     var recipes: [Recipe] = []
                     
                     for matchDictionary in matchesArray {
+                        
                         if let recipe = Recipe(jsonDictionary: matchDictionary) {
                             recipes.append(recipe)
                         }
@@ -101,12 +124,6 @@ class RecipeController {
         
         
     }
-    
-    
-    
-    
-    
-    
     
 }
 

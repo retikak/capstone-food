@@ -10,7 +10,9 @@ import Foundation
 import UIKit
 
 class ImageController {
+    
     static func fetchImageAtURL(url: NSURL, completion:(image: UIImage?) ->Void) {
+    
         NetworkController.performRequestForURL(url, httpMethod:.Get) { (data, error) in
             guard let data = data else {
                 print("Could not fetch data for image")
