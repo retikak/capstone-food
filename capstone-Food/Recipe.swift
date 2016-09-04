@@ -18,6 +18,7 @@ struct Recipe {
     private let kIngredients = "ingredients"
     private let ksmallImageUrls = "smallImageUrls"
     private let kimageUrlsBySize = "imageUrlsBySize"
+    private let kAttributes = "attributes"
 
     
     var Id : String = ""
@@ -26,8 +27,10 @@ struct Recipe {
     var totalTimeInSeconds: Int = 0
     var sourceDisplayName: String = ""
     var ingredients : [String] = []
-    var images: [String] = []
+    var smallImages: [String] = []
     var mainImages: String = ""
+    var course : [String] = []
+    var cuisine: [String]?
     
     
     
@@ -44,10 +47,17 @@ struct Recipe {
         self.totalTimeInSeconds = jsonDictionary[kTotalTimeInSeconds] as? Int ?? 0
         self.sourceDisplayName = jsonDictionary[kSourceDisplayName] as? String ?? ""
         self.ingredients = jsonDictionary[kIngredients] as? [String] ?? []
-        self.images = jsonDictionary[ksmallImageUrls] as? [String] ?? []
+        self.smallImages = jsonDictionary[ksmallImageUrls] as? [String] ?? []
         self.mainImages = image
-     
-    
+        
+        guard let attributesDictionary = jsonDictionary[kAttributes] as? [String:AnyObject],
+            let courseArray  = attributesDictionary["course"] as? [String], let cuisine = attributesDictionary["cuisine"] as? [String]?
+        else {return nil}
+        self.course = courseArray
+        self.cuisine = cuisine
+        
+        
+
     }
     
     

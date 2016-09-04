@@ -10,6 +10,8 @@ import Foundation
 
 
 class RecipeController {
+    var recipe: Recipe?
+    
     
     private (set) var recipes: [Recipe] = [] {
         
@@ -23,22 +25,25 @@ class RecipeController {
         
     }
     
-    //TODO: test
     init() {
         getAllRecipes { (recipes) in
             
         }
+        
     }
-
+    
     static let sharedController = RecipeController()
     
     private let baseURLKey = "https://api.yummly.com/v1"
     private let apiKey = "db906b1bb9aa10be45ffb3d4676d45e8"
     private let appIdKey = "edd3f7af"
     private let baseURL = NSURL(string:"https://api.yummly.com/v1/api/recipes")
+    private let baseURLForDirections = NSURL(string: "http://api.yummly.com/v1/api/recipe/recipe-id?")
     
     
     /*
+     
+     "http://api.yummly.com/v1/api/recipe/French-Onion-Soup-The-Pioneer-Woman-Cooks-_-Ree-Drummond-41364?_app_id=edd3f7af&_app_key=db906b1bb9aa10be45ffb3d4676d45e8
      http://api.yummly.com/v1/api/recipe/recipe-id?_app_id=YOUR_ID&_app_key=YOUR_APP_KEY
      
      http://api.yummly.com/v1/api/recipe/French-Onion-Soup-1838096?_app_id=edd3f7af&_app_key=db906b1bb9aa10be45ffb3d4676d45e8
@@ -53,12 +58,36 @@ class RecipeController {
      */
     
     
+    func getDirections(recipe: Recipe, completion: (url: NSURL?) ->Void) {
+        let id = recipe.Id
+        let completeidString = "http://api.yummly.com/v1/api/recipe" + "/\(id)?"
+        let baseURLForDirections = NSURL(string: completeidString)
+        let urlParameters = ["_app_id": appIdKey, "_app_key": apiKey]
+        
+        if let url = baseURLForDirections {
+            NetworkController.performRequestForURL(url, httpMethod: .Get, urlParameters: urlParameters, body: nil, completion: { (data, error) in
+                if let data = data,
+                    let jsonAnyObject = try? NSJSONSerialization.JSONObjectWithData(data, options: []),
+                    let jsonDictionary = jsonAnyObject as? [String: AnyObject],
+                    let source = jsonDictionary["source"] as? [String: AnyObject],
+                    let sourceURL = source["sourceRecipeUrl"] as? String, url = NSURL(string: sourceURL) {
+                    completion(url: url)
+                    
+                } else {
+                    completion(url: nil)
+                }
+                
+            })
+        }
+        
+        
+    }
     
     
     func getRecipeWithSearchTerm(searchTerm: String, completion: (recipes: [Recipe]) -> Void) {
         
         let urlParameters = ["_app_id": appIdKey, "_app_key": apiKey, "q" : "\(searchTerm)", "maxResult": "15", "start": "0", "requirePictures": "true",
-        "allowedDiet": "390^Pescetarian", "alloweDiet[]": "388^Lacto vegetarian"]
+                             "allowedDiet": "390^Pescetarian", "alloweDiet[]": "388^Lacto vegetarian"]
         
         if let url = baseURL {
             NetworkController.performRequestForURL(url, httpMethod: .Get, urlParameters: urlParameters, body: nil , completion: { (data, error) in

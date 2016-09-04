@@ -10,15 +10,13 @@ import UIKit
 
 class GroceryListTableViewController: UITableViewController {
     var recipe: Recipe?
-    var ingredients: [String] = []
-    var items = [String]()
-    
+        
     @IBOutlet weak var addItemTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         if NSUserDefaults.standardUserDefaults().objectForKey("items") !=  nil {
-            items = NSUserDefaults.standardUserDefaults().objectForKey("items") as! [String]
+            GroceryController.ingredients = NSUserDefaults.standardUserDefaults().objectForKey("items") as! [String]
         }
         
     }
@@ -30,8 +28,8 @@ class GroceryListTableViewController: UITableViewController {
     
     @IBAction func AddToListButtonTapped(sender: UIButton) {
         guard let text = addItemTextField.text else {return}
-        items.append(text)
-        NSUserDefaults.standardUserDefaults().setObject(items, forKey: "items")
+        GroceryController.ingredients.append(text)
+        NSUserDefaults.standardUserDefaults().setObject(GroceryController.ingredients, forKey: "items")
         tableView.reloadData()
     }
     
@@ -39,20 +37,20 @@ class GroceryListTableViewController: UITableViewController {
     
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return items.count
+        return GroceryController.ingredients.count
     }
     
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("groceryList", forIndexPath: indexPath)
-        cell.textLabel?.text = items[indexPath.row]
+        cell.textLabel?.text = GroceryController.ingredients[indexPath.row]
         return cell
     }
     
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == UITableViewCellEditingStyle.Delete {
-            items.removeAtIndex(indexPath.row)
-            NSUserDefaults.standardUserDefaults().setObject(items, forKey: "items")
+            GroceryController.ingredients.removeAtIndex(indexPath.row)
+            NSUserDefaults.standardUserDefaults().setObject(GroceryController.ingredients, forKey: "items")
             tableView.reloadData()
         }
     }

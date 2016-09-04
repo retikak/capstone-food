@@ -15,28 +15,17 @@ class RecipeListTableViewController: UITableViewController, UISearchBarDelegate,
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        // TODO:  test
-        
-        _ = RecipeController()
-        
         RecipeController.sharedController.getAllRecipes { (recipes) in
             
             
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.searchResultsRecipes = recipes
                 self.tableView.reloadData()
-                print("its good")
             })
         }
         
-        
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+
     
     //  MARK: - SearchBar Delegate
     
@@ -72,8 +61,8 @@ class RecipeListTableViewController: UITableViewController, UISearchBarDelegate,
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCellWithIdentifier("RecipeCell", forIndexPath: indexPath) as? CustomRecipeTableViewCell      {
             let recipe = searchResultsRecipes[indexPath.row]
-            let recipeImage = recipe.images[0]
-           // let mainImage = recipe.mainImages
+            let recipeImage = recipe.mainImages
+            // let mainImage = recipe.mainImages
             if let url = NSURL(string: recipeImage) {
                 
                 ImageController.fetchImageAtURL(url) { (image) in
@@ -85,10 +74,12 @@ class RecipeListTableViewController: UITableViewController, UISearchBarDelegate,
                 }
             }
             
+            
+            
             cell.sourceNameLabel.text = "source display name : \(recipe.sourceDisplayName)"
-            cell.recipeNameLabel.text = "recipe name: \(recipe.recipeName)"
+            cell.recipeNameLabel.text = recipe.recipeName
             cell.ratingLabel.text = String("rating is \(recipe.rating) out of 5")
-           
+            cell.totalTimeLabel.text = String(recipe.totalTimeInSeconds)
             
             return cell
             
@@ -98,23 +89,19 @@ class RecipeListTableViewController: UITableViewController, UISearchBarDelegate,
         }
     }
     
-    
-    
-    
-    
-    // MARK: - Navigation
+     // MARK: - Navigation
     
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         if segue.identifier == "toRecipeDetail" {
             if let detailVC = segue.destinationViewController as? RecipeDetailViewController {
-                _ = detailVC.view
+               
                 let indexPath = self.tableView.indexPathForSelectedRow
                 if let selectedRow = indexPath?.row {
                     let recipe = searchResultsRecipes[selectedRow]
-                    detailVC.updateWithRecipe(recipe)
-                
+                    detailVC.recipe = recipe
+                    
                 }
             }
         }
