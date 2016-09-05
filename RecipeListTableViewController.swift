@@ -80,6 +80,10 @@ class RecipeListTableViewController: UITableViewController, UISearchBarDelegate,
             cell.recipeNameLabel.text = recipe.recipeName
             cell.ratingLabel.text = String("rating is \(recipe.rating) out of 5")
             cell.totalTimeLabel.text = String(recipe.totalTimeInSeconds)
+            cell.getStarImage(4, recipeRating: 4)
+            cell.layoutSubviews1(searchResultsRecipes[indexPath.row])
+            
+        
             
             return cell
             

@@ -10,7 +10,7 @@ import Foundation
 
 
 class RecipeController {
-    var recipe: Recipe?
+    
     
     
     private (set) var recipes: [Recipe] = [] {
@@ -82,6 +82,33 @@ class RecipeController {
         
         
     }
+    
+    func getNutritionInfo(recipe: Recipe, completion: (calorie: Int) ->Void) {
+        let id = recipe.Id
+        let completeidString = "http://api.yummly.com/v1/api/recipe" + "/\(id)?"
+        let baseURLForDirections = NSURL(string: completeidString)
+        let urlParameters = ["_app_id": appIdKey, "_app_key": apiKey]
+        
+        if let url = baseURLForDirections {
+            NetworkController.performRequestForURL(url, httpMethod: .Get, urlParameters: urlParameters, body: nil, completion: { (data, error) in
+                if let data = data,
+                    let jsonAnyObject = try? NSJSONSerialization.JSONObjectWithData(data, options: []),
+                    let jsonDictionary = jsonAnyObject as? [String: AnyObject],
+                    let nutrition = jsonDictionary["nutritionEstimates"] as? [[String: AnyObject]],
+                let firstObject = nutrition[0] as? [String: AnyObject],
+                    let calorie = firstObject["value"] as? Int {
+                    completion(calorie: calorie)
+                    
+                } else {
+                    completion(calorie: 0)
+                }
+                
+            })
+        }
+        
+        
+    }
+
     
     
     func getRecipeWithSearchTerm(searchTerm: String, completion: (recipes: [Recipe]) -> Void) {
