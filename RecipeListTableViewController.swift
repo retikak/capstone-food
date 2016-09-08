@@ -77,9 +77,22 @@ class RecipeListTableViewController: UITableViewController, UISearchBarDelegate,
             
             
             cell.sourceNameLabel.text = "source display name : \(recipe.sourceDisplayName)"
+            
             cell.recipeNameLabel.text = recipe.recipeName
             cell.ratingLabel.text = String("rating is \(recipe.rating) out of 5")
             cell.totalTimeLabel.text = String(recipe.totalTimeInSeconds)
+            
+            let seconds = recipe.totalTimeInSeconds
+            let (h,m,s) = secondsToHoursMinutesSeconds(seconds)
+            if  h != 0 || s != 0 {
+                cell.totalTimeLabel.text = "Cook time is \(h) hours, \(m) minutes, \(s) seconds"
+            }else {
+                cell.totalTimeLabel.text = "Cook time is \(m) minutes"
+            }
+
+            
+            
+            
             cell.getStarImage(4, recipeRating: 4)
             cell.layoutSubviews1(searchResultsRecipes[indexPath.row])
             
@@ -91,6 +104,10 @@ class RecipeListTableViewController: UITableViewController, UISearchBarDelegate,
             
             return CustomRecipeTableViewCell()
         }
+    }
+    
+    func secondsToHoursMinutesSeconds (seconds : Int) -> (Int, Int, Int) {
+        return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
     }
     
      // MARK: - Navigation

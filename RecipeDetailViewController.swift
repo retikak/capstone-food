@@ -12,11 +12,12 @@ import SafariServices
 class RecipeDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     
+    @IBOutlet weak var recipeCaloriesLabel: UILabel!
     @IBOutlet weak var recipeCuisineLabel: UILabel!
     @IBOutlet weak var recipeCourseLabel: UILabel!
     @IBOutlet weak var recipeImage: UIImageView!
     @IBOutlet weak var recipeNameLabel: UILabel!
-    @IBOutlet weak var recipeRatingLabel: UILabel!
+  //  @IBOutlet weak var recipeRatingLabel: UILabel!
     @IBOutlet weak var cookingTimeLabel: UILabel!
     
     @IBOutlet weak var IngredientsTableView: UITableView!
@@ -32,6 +33,7 @@ class RecipeDetailViewController: UIViewController, UITableViewDelegate, UITable
             
         }
     }
+    
     
     @IBAction func directionsButtonTapped(sender: AnyObject) {
         guard let recipe = recipe else {return}
@@ -53,16 +55,27 @@ class RecipeDetailViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func updateWithRecipe(recipe: Recipe) {
+        RecipeController.sharedController.getNutritionInfo(recipe) { (calorie) in
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                print("Kcal is \(calorie)")
+                
+                self.recipeCaloriesLabel.text = "Kcal is \(calorie)"
+                
+                
+            })
+        }
+        
+        
         title = recipe.recipeName
         
         self.recipeCourseLabel.text = recipe.course[0] ?? ""
         if recipe.cuisine != nil {
-        self.recipeCuisineLabel.text = recipe.cuisine![0] ?? ""
+            self.recipeCuisineLabel.text = recipe.cuisine![0] ?? ""
         } else {
             self.recipeCuisineLabel.text = " "
         }
         self.recipeNameLabel.text = " Recipe Name: \(recipe.recipeName)"
-        self.recipeRatingLabel.text = " Recipe rating is \(recipe.rating) / 5 "
+        //self.recipeRatingLabel.text = " Recipe rating is \(recipe.rating) / 5 "
         let seconds = recipe.totalTimeInSeconds
         let (h,m,s) = secondsToHoursMinutesSeconds(seconds)
         if  h != 0 || s != 0 {

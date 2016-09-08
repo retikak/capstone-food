@@ -25,13 +25,6 @@ class RecipeController {
         
     }
     
-    init() {
-        getAllRecipes { (recipes) in
-            
-        }
-        
-    }
-    
     static let sharedController = RecipeController()
     
     private let baseURLKey = "https://api.yummly.com/v1"
@@ -94,26 +87,23 @@ class RecipeController {
                 if let data = data,
                     let jsonAnyObject = try? NSJSONSerialization.JSONObjectWithData(data, options: []),
                     let jsonDictionary = jsonAnyObject as? [String: AnyObject],
-                    let nutrition = jsonDictionary["nutritionEstimates"] as? [[String: AnyObject]],
-                let firstObject = nutrition[0] as? [String: AnyObject],
-                    let calorie = firstObject["value"] as? Int {
-                    completion(calorie: calorie)
+                    let nutritionArrayOfDictionary = jsonDictionary["nutritionEstimates"] as? [[String: AnyObject]],
+                    nutritionDict = nutritionArrayOfDictionary.first?["value"] as? Int {
                     
-                } else {
+                    completion(calorie: nutritionDict)
+                    print(nutritionDict)
+                }else {
                     completion(calorie: 0)
                 }
-                
             })
         }
-        
-        
     }
-
+    
     
     
     func getRecipeWithSearchTerm(searchTerm: String, completion: (recipes: [Recipe]) -> Void) {
         
-        let urlParameters = ["_app_id": appIdKey, "_app_key": apiKey, "q" : "\(searchTerm)", "maxResult": "15", "start": "0", "requirePictures": "true",
+        let urlParameters = ["_app_id": appIdKey, "_app_key": apiKey, "q" : "\(searchTerm)", "maxResult": "35", "start": "0", "requirePictures": "true",
                              "allowedDiet": "390^Pescetarian", "alloweDiet[]": "388^Lacto vegetarian"]
         
         if let url = baseURL {
@@ -146,7 +136,7 @@ class RecipeController {
     }
     
     func getAllRecipes(completion:(recipes: [Recipe]) -> Void) {
-        let urlParameters = ["_app_id": appIdKey, "_app_key": apiKey, "maxResult": "15", "start": "0", "requirePictures": "true"]
+        let urlParameters = ["_app_id": appIdKey, "_app_key": apiKey, "maxResult": "35", "start": "0", "requirePictures": "true"]
         
         if let url = baseURL {
             NetworkController.performRequestForURL(url, httpMethod: .Get, urlParameters: urlParameters, body: nil , completion: { (data, error) in

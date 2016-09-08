@@ -22,6 +22,7 @@
 		791147A81D6FA7CD00E1B932 /* NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791147A71D6FA7CD00E1B932 /* NetworkController.swift */; };
 		791147AC1D6FA7EF00E1B932 /* ImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791147AB1D6FA7EF00E1B932 /* ImageController.swift */; };
 		791D18951D7630A5000F4B59 /* GroceryListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791D18941D7630A5000F4B59 /* GroceryListTableViewController.swift */; };
+		798671171D80C5C600D0AF64 /* StoresMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798671161D80C5C600D0AF64 /* StoresMapViewController.swift */; };
 		79B8FAEB1D73AB47004883DF /* CustomRecipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B8FAEA1D73AB47004883DF /* CustomRecipeTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +44,7 @@
 		791147A71D6FA7CD00E1B932 /* NetworkController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetworkController.swift; path = ../NetworkController.swift; sourceTree = "<group>"; };
 		791147AB1D6FA7EF00E1B932 /* ImageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageController.swift; sourceTree = "<group>"; };
 		791D18941D7630A5000F4B59 /* GroceryListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroceryListTableViewController.swift; sourceTree = "<group>"; };
+		798671161D80C5C600D0AF64 /* StoresMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoresMapViewController.swift; sourceTree = "<group>"; };
 		79B8FAEA1D73AB47004883DF /* CustomRecipeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomRecipeTableViewCell.swift; path = ../CustomRecipeTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -78,6 +80,7 @@
 			children = (
 				791147811D6F696600E1B932 /* AppDelegate.swift */,
 				791147851D6F696600E1B932 /* Main.storyboard */,
+				798671161D80C5C600D0AF64 /* StoresMapViewController.swift */,
 				7911479F1D6FA72B00E1B932 /* Model */,
 				791147A01D6FA73800E1B932 /* Views */,
 				791147A21D6FA75100E1B932 /* ModelControllers */,
@@ -100,7 +103,6 @@
 		791147A01D6FA73800E1B932 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				79B8FAEA1D73AB47004883DF /* CustomRecipeTableViewCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -121,6 +123,7 @@
 		791147A21D6FA75100E1B932 /* ModelControllers */ = {
 			isa = PBXGroup;
 			children = (
+				79B8FAEA1D73AB47004883DF /* CustomRecipeTableViewCell.swift */,
 				791147A71D6FA7CD00E1B932 /* NetworkController.swift */,
 				791147AB1D6FA7EF00E1B932 /* ImageController.swift */,
 				791147A51D6FA7BA00E1B932 /* RecipeController.swift */,
@@ -161,6 +164,7 @@
 				TargetAttributes = {
 					7911477D1D6F696600E1B932 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = JUWJEKQFF8;
 					};
 				};
 			};
@@ -205,6 +209,7 @@
 				7911479A1D6F995A00E1B932 /* RecipeListTableViewController.swift in Sources */,
 				79052B431D77912500B8F3F6 /* GroceryController.swift in Sources */,
 				791147A41D6FA79900E1B932 /* Recipe.swift in Sources */,
+				798671171D80C5C600D0AF64 /* StoresMapViewController.swift in Sources */,
 				7911479E1D6FA1AD00E1B932 /* SearchResultsTableViewController.swift in Sources */,
 				791147961D6F7FF900E1B932 /* LoginSignupViewController.swift in Sources */,
 				791147A61D6FA7BA00E1B932 /* RecipeController.swift in Sources */,
@@ -326,10 +331,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "capstone-Food/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.oppfish.capstone-Food";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -339,10 +347,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "capstone-Food/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.oppfish.capstone-Food";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
