@@ -44,6 +44,7 @@ class GroceryListTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("groceryList", forIndexPath: indexPath)
         cell.textLabel?.text = GroceryController.ingredients[indexPath.row]
+        addItemTextField.text = " "
         return cell
     }
     

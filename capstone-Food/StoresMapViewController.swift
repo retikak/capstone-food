@@ -7,52 +7,64 @@
 //
 
 import UIKit
-import MapKit
+import CoreLocation
 
 class StoresMapViewController: UIViewController {
-
-    @IBOutlet weak var mapView: MKMapView!
+    
+    @IBOutlet weak var StoreListTableView: UITableView!
+    
+//    @IBOutlet weak var mapView: MKMapView!
+    
+    var locationManger: CLLocationManager?
+    var startLocation: CLLocation?
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        displayGroceryStores()
-    }
-    
-    func displayGroceryStores() {
-        let request = MKLocalSearchRequest()
-        request.naturalLanguageQuery = "Groceries"
-        request.region = mapView.region
         
-        let search = MKLocalSearch(request: request)
+        locationManger = CLLocationManager()
+        locationManger?.delegate = self
+        locationManger?.desiredAccuracy = kCLLocationAccuracyBest
+        locationManger?.requestAlwaysAuthorization()
         
-        search.startWithCompletionHandler { (localSearchResponse, error) in
-
-            if error != nil {
-                print("error occured in search: \(error?.localizedDescription)")
-                
-            } else if localSearchResponse!.mapItems.count == 0 {
-                print("No Matches found")
-            } else {
-                print("matches found")
-                
-                for item in localSearchResponse!.mapItems {
-                    print(item.name)
-                }
-            }
-        }
-    
+        
+        
+        
+        
     }
-
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
+    
 }
+
+extension StoresMapViewController: CLLocationManagerDelegate {
+    
+    
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if startLocation == nil {
+            startLocation = locations.first
+            print(startLocation)
+        } else {
+            guard let latest = locations.first else {return}
+            let distanceInMeters = startLocation?.distanceFromLocation(latest)
+            print("distance in meters: \(distanceInMeters!)")
+        }
+    }
+    
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+        
+    }
+    
+    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+        if status == .AuthorizedAlways || status == .AuthorizedWhenInUse {
+            locationManger?.requestLocation()
+            locationManger?.allowsBackgroundLocationUpdates = true
+        }
+    }
+    
+}
+
+
+
+

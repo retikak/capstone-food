@@ -29,35 +29,22 @@ class CustomRecipeTableViewCell: UITableViewCell {
     let emptyStarImage = UIImage(named: "emptyStar")
     
     
-    
-    
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        
-        
-        
-        
-        
+    
     }
-    
-    //    override func setSelected(selected: Bool, animated: Bool) {
-    //        super.setSelected(selected, animated: animated)
-    //
-    //    }
-    
-    func layoutSubviews1(recipe:Recipe) {
-        let imageView1 = UIImageView(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
+        func layoutSubviews1(recipe:Recipe) {
+        let imageView1 = UIImageView(frame: CGRect(x: 0, y: 0, width: 15, height: 15))
         
-        let imageView2 = UIImageView(frame: CGRect(x: 49, y: 0, width: 44, height: 44))
+        let imageView2 = UIImageView(frame: CGRect(x: 18, y: 0, width: 15, height: 15))
         
         
-        let imageView3 = UIImageView(frame: CGRect(x: 98, y: 0, width: 44, height: 44))
+        let imageView3 = UIImageView(frame: CGRect(x: 36, y: 0, width: 15, height: 15))
         
-        let imageView4 = UIImageView(frame: CGRect(x: 147, y: 0, width: 44, height: 44))
+        let imageView4 = UIImageView(frame: CGRect(x: 54, y: 0, width: 15, height: 15))
         
-        let imageView5 = UIImageView(frame: CGRect(x: 196, y: 0, width: 44, height: 44))
+        let imageView5 = UIImageView(frame: CGRect(x: 72, y: 0, width: 15, height: 15))
         
         ratingStarView.addSubview(imageView1)
         ratingStarView.addSubview(imageView2)
@@ -99,25 +86,22 @@ class CustomRecipeTableViewCell: UITableViewCell {
             
         }
         
-        
-        
-        
-        
+      
     }
     
     
     
     
     
-    func getStarImage(starNumber: Int,recipeRating :Int) -> UIImage {
-        
-        
-        if recipeRating >= starNumber {
-            return filledStarImage!
-        } else {
-            return emptyStarImage!
-        }
-    }
+//    func getStarImage(starNumber: Int,recipeRating :Int) -> UIImage {
+//        
+//        
+//        if recipeRating >= starNumber {
+//            return filledStarImage!
+//        } else {
+//            return emptyStarImage!
+//        }
+//    }
     
     
     

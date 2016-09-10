@@ -14,6 +14,8 @@ class RecipeListTableViewController: UITableViewController, UISearchBarDelegate,
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 70.0
         
         RecipeController.sharedController.getAllRecipes { (recipes) in
             
@@ -25,7 +27,7 @@ class RecipeListTableViewController: UITableViewController, UISearchBarDelegate,
         }
         
     }
-
+    
     
     //  MARK: - SearchBar Delegate
     
@@ -35,6 +37,7 @@ class RecipeListTableViewController: UITableViewController, UISearchBarDelegate,
         RecipeController.sharedController.getRecipeWithSearchTerm(searchTerm) { (recipes) in
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.searchResultsRecipes = recipes
+                searchBar.text = " "
                 self.tableView.reloadData()
             })
         }
@@ -62,7 +65,7 @@ class RecipeListTableViewController: UITableViewController, UISearchBarDelegate,
         if let cell = tableView.dequeueReusableCellWithIdentifier("RecipeCell", forIndexPath: indexPath) as? CustomRecipeTableViewCell      {
             let recipe = searchResultsRecipes[indexPath.row]
             let recipeImage = recipe.mainImages
-            // let mainImage = recipe.mainImages
+            
             if let url = NSURL(string: recipeImage) {
                 
                 ImageController.fetchImageAtURL(url) { (image) in
@@ -76,10 +79,9 @@ class RecipeListTableViewController: UITableViewController, UISearchBarDelegate,
             
             
             
-            cell.sourceNameLabel.text = "source display name : \(recipe.sourceDisplayName)"
+            cell.sourceNameLabel.text = recipe.sourceDisplayName
             
             cell.recipeNameLabel.text = recipe.recipeName
-            cell.ratingLabel.text = String("rating is \(recipe.rating) out of 5")
             cell.totalTimeLabel.text = String(recipe.totalTimeInSeconds)
             
             let seconds = recipe.totalTimeInSeconds
@@ -89,14 +91,8 @@ class RecipeListTableViewController: UITableViewController, UISearchBarDelegate,
             }else {
                 cell.totalTimeLabel.text = "Cook time is \(m) minutes"
             }
-
             
-            
-            
-            cell.getStarImage(4, recipeRating: 4)
             cell.layoutSubviews1(searchResultsRecipes[indexPath.row])
-            
-        
             
             return cell
             
@@ -110,14 +106,14 @@ class RecipeListTableViewController: UITableViewController, UISearchBarDelegate,
         return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
     }
     
-     // MARK: - Navigation
+    // MARK: - Navigation
     
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         if segue.identifier == "toRecipeDetail" {
             if let detailVC = segue.destinationViewController as? RecipeDetailViewController {
-               
+                
                 let indexPath = self.tableView.indexPathForSelectedRow
                 if let selectedRow = indexPath?.row {
                     let recipe = searchResultsRecipes[selectedRow]
