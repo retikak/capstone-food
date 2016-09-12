@@ -9,8 +9,8 @@
 import UIKit
 
 class GroceryListTableViewController: UITableViewController {
-    var recipe: Recipe?
-        
+//    var recipe: Recipe?
+    
     @IBOutlet weak var addItemTextField: UITextField!
     
     override func viewDidLoad() {

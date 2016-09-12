@@ -10,7 +10,7 @@ import UIKit
 
 class SearchResultsTableViewController: UITableViewController {
     
-    var dataSource: [Recipe] = []
+    var filteredRecipes: [Recipe] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,25 +22,26 @@ class SearchResultsTableViewController: UITableViewController {
     
     // MARK: - Table view data source
     
-    
-    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return dataSource.count
+        return filteredRecipes.count
     }
     
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCellWithIdentifier("resultsCell", forIndexPath: indexPath) as? CustomRecipeTableViewCell {
-            let recipe = dataSource[indexPath.row]
-            cell.recipeNameLabel.text = recipe.recipeName
-            
-            
-            return cell
-        } else {
-            return CustomRecipeTableViewCell()
-        }
+        let cell = tableView.dequeueReusableCellWithIdentifier("resultsCell", forIndexPath: indexPath) as? CustomRecipeTableViewCell
+        let recipe = filteredRecipes[indexPath.item]
+        cell?.updateCellWithRecipe(recipe)
+        resignFirstResponder()
+        
+        return cell ?? CustomRecipeTableViewCell()
+        
     }
     
     
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let cell = tableView.cellForRowAtIndexPath(indexPath)
+        self.presentingViewController?.performSegueWithIdentifier("toRecipeDetailFromSearch", sender: cell)
+        
+    }
 }

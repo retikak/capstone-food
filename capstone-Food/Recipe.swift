@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Recipe {
+struct Recipe  {
     
     private let kId = "id"
     private let kRecipeName = "recipeName"
@@ -55,11 +55,8 @@ struct Recipe {
         else {return nil}
         self.course = courseArray
         self.cuisine = cuisine
-        
-        
 
     }
     
-    
-    
+  
 }

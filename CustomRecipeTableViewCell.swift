@@ -14,17 +14,11 @@ class CustomRecipeTableViewCell: UITableViewCell {
     @IBOutlet weak var sourceNameLabel: UILabel!
     @IBOutlet weak var recipeImage: UIImageView!
     @IBOutlet weak var recipeNameLabel: UILabel!
-    @IBOutlet weak var ratingLabel: UILabel!
     @IBOutlet weak var totalTimeLabel: UILabel!
     @IBOutlet weak var ratingStarView: UIView!
     
     var spacing :Int = 5
     var stars: Int = 5
-    
-    
-    
-    
-    
     let filledStarImage = UIImage(named: "filledStar")
     let emptyStarImage = UIImage(named: "emptyStar")
     
@@ -32,9 +26,9 @@ class CustomRecipeTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-    
+        
     }
-        func layoutSubviews1(recipe:Recipe) {
+    func layoutSubviews1(recipe:Recipe) {
         let imageView1 = UIImageView(frame: CGRect(x: 0, y: 0, width: 15, height: 15))
         
         let imageView2 = UIImageView(frame: CGRect(x: 18, y: 0, width: 15, height: 15))
@@ -57,6 +51,7 @@ class CustomRecipeTableViewCell: UITableViewCell {
             imageView3.image = filledStarImage
             imageView4.image = filledStarImage
             imageView5.image = filledStarImage
+            
         }else if recipe.rating == 4 {
             imageView1.image = filledStarImage
             imageView2.image = filledStarImage
@@ -70,14 +65,15 @@ class CustomRecipeTableViewCell: UITableViewCell {
             imageView3.image = filledStarImage
             imageView4.image = emptyStarImage
             imageView5.image = emptyStarImage
+            
         } else if recipe.rating == 2 {
             imageView1.image = filledStarImage
             imageView2.image = filledStarImage
             imageView3.image = emptyStarImage
             imageView4.image = emptyStarImage
             imageView5.image = emptyStarImage
-        } else {
             
+        } else {
             imageView1.image = filledStarImage
             imageView2.image = emptyStarImage
             imageView3.image = emptyStarImage
@@ -86,34 +82,54 @@ class CustomRecipeTableViewCell: UITableViewCell {
             
         }
         
-      
+        
+    }
+    
+    func updateCellWithRecipe(recipe: Recipe) {
+        
+        //let recipeImage = recipe.mainImages
+        
+        
+        if let url = NSURL(string: recipe.mainImages) {
+            
+            ImageController.fetchImageAtURL(url) { (image) in
+                if let image = image {
+                    self.recipeImage.image = image
+                    self.recipeImage.layer.cornerRadius = 5.0
+                    self.recipeImage.clipsToBounds = true
+                }
+            }
+        }
+        
+        
+        
+        sourceNameLabel.text = recipe.sourceDisplayName
+        recipeNameLabel.text = recipe.recipeName
+        totalTimeLabel.text = String(recipe.totalTimeInSeconds)
+        
+        let seconds = recipe.totalTimeInSeconds
+        let (h,m,s) = secondsToHoursMinutesSeconds(seconds)
+        if  h != 0 || s != 0 {
+            totalTimeLabel.text = "Cook time is \(h) hours, \(m) minutes, \(s) seconds"
+        }else {
+            totalTimeLabel.text = "Cook time is \(m) minutes"
+        }
     }
     
     
-    
-    
-    
-//    func getStarImage(starNumber: Int,recipeRating :Int) -> UIImage {
-//        
-//        
-//        if recipeRating >= starNumber {
-//            return filledStarImage!
-//        } else {
-//            return emptyStarImage!
-//        }
-//    }
-    
-    
-    
-    //    if let recipeRating = Int((RecipeController.sharedController.recipe?.rating)!) {
-    //        CustomRecipeTableViewCell.
-    //    }
-    
-    
-    
-    
-    
+    func secondsToHoursMinutesSeconds (seconds : Int) -> (Int, Int, Int) {
+        return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
+    }
 }
+
+
+
+
+
+
+
+
+
 
 
 

@@ -8,103 +8,73 @@
 
 import UIKit
 
-class RecipeListTableViewController: UITableViewController, UISearchBarDelegate, UISearchResultsUpdating {
+class RecipeListTableViewController: UITableViewController, UISearchResultsUpdating {
     
-    var searchResultsRecipes: [Recipe] = []
+    var searchController: UISearchController?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 70.0
         
+        setUpSearchController()
         RecipeController.sharedController.getAllRecipes { (recipes) in
-            
-            
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                self.searchResultsRecipes = recipes
+                print("got recipes")
+                
                 self.tableView.reloadData()
             })
         }
         
     }
     
-    
-    //  MARK: - SearchBar Delegate
-    
-    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-        searchBar.resignFirstResponder()
-        guard let searchTerm = searchBar.text?.lowercaseString else {return}
-        RecipeController.sharedController.getRecipeWithSearchTerm(searchTerm) { (recipes) in
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                self.searchResultsRecipes = recipes
-                searchBar.text = " "
-                self.tableView.reloadData()
-            })
-        }
+    func setUpSearchController() {
+        let resultsController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("resultsController")
+        searchController = UISearchController(searchResultsController: resultsController)
+        guard let searchController = searchController else {return}
+        searchController.searchResultsUpdater = self
+        tableView.tableHeaderView = searchController.searchBar
+        searchController.searchBar.placeholder = "Search by ingredient, recipe name or cuisine type"
+        searchController.searchBar.sizeToFit()
+        definesPresentationContext = true
+        
     }
     
-    // MARK: - SearchResultsUpdating
+    
+    //  MARK: - SearchResultsUpdating
     
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         guard let searchTerm = searchController.searchBar.text?.lowercaseString else {return}
-        let resultsController = searchController.searchResultsController as? SearchResultsTableViewController
-        resultsController?.dataSource = RecipeController.sharedController.recipes.filter({$0.recipeName.lowercaseString.containsString(searchTerm)})
-        resultsController?.tableView.reloadData()
+       guard let resultsController = searchController.searchResultsController as? SearchResultsTableViewController else {return}
+        resultsController.filteredRecipes = RecipeController.sharedController.recipes.filter({$0.recipeName.lowercaseString.containsString(searchTerm)})
+        resultsController.tableView.reloadData()
     }
+    
+    
     
     // MARK: - Table view data source
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return searchResultsRecipes.count
+        
+        print(RecipeController.sharedController.recipes.count)
+        return RecipeController.sharedController.recipes.count
         
     }
     
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCellWithIdentifier("RecipeCell", forIndexPath: indexPath) as? CustomRecipeTableViewCell      {
-            let recipe = searchResultsRecipes[indexPath.row]
-            let recipeImage = recipe.mainImages
-            
-            if let url = NSURL(string: recipeImage) {
-                
-                ImageController.fetchImageAtURL(url) { (image) in
-                    if let image = image {
-                        cell.recipeImage.image = image
-                        cell.recipeImage.layer.cornerRadius = 5.0
-                        cell.recipeImage.clipsToBounds = true
-                    }
-                }
-            }
-            
-            
-            
-            cell.sourceNameLabel.text = recipe.sourceDisplayName
-            
-            cell.recipeNameLabel.text = recipe.recipeName
-            cell.totalTimeLabel.text = String(recipe.totalTimeInSeconds)
-            
-            let seconds = recipe.totalTimeInSeconds
-            let (h,m,s) = secondsToHoursMinutesSeconds(seconds)
-            if  h != 0 || s != 0 {
-                cell.totalTimeLabel.text = "Cook time is \(h) hours, \(m) minutes, \(s) seconds"
-            }else {
-                cell.totalTimeLabel.text = "Cook time is \(m) minutes"
-            }
-            
-            cell.layoutSubviews1(searchResultsRecipes[indexPath.row])
-            
+            let recipe = RecipeController.sharedController.recipes[indexPath.row]
+            cell.updateCellWithRecipe(recipe)
+            cell.layoutSubviews1(RecipeController.sharedController.recipes[indexPath.row])
             return cell
-            
         } else {
-            
             return CustomRecipeTableViewCell()
         }
     }
     
-    func secondsToHoursMinutesSeconds (seconds : Int) -> (Int, Int, Int) {
-        return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
-    }
+    
     
     // MARK: - Navigation
     
@@ -116,7 +86,7 @@ class RecipeListTableViewController: UITableViewController, UISearchBarDelegate,
                 
                 let indexPath = self.tableView.indexPathForSelectedRow
                 if let selectedRow = indexPath?.row {
-                    let recipe = searchResultsRecipes[selectedRow]
+                    let recipe = RecipeController.sharedController.recipes[selectedRow]
                     detailVC.recipe = recipe
                     
                 }

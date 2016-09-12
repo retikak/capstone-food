@@ -8,8 +8,14 @@
 
 import Foundation
 
+protocol RecipeControllerDelegate: class {
+    func recipesChanged()
+}
+
 
 class RecipeController {
+    static let sharedController = RecipeController()
+    weak var delegate: RecipeControllerDelegate?
     
     
     
@@ -18,14 +24,19 @@ class RecipeController {
         didSet {
             
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                print("got recipe")
-                
+                self.delegate?.recipesChanged()
             })
         }
         
     }
+    init() {
+        getAllRecipes { (recipes) in
+            //print(recipes)
+        }
+        
+        
+    }
     
-    static let sharedController = RecipeController()
     
     private let baseURLKey = "https://api.yummly.com/v1"
     private let apiKey = "db906b1bb9aa10be45ffb3d4676d45e8"
@@ -91,7 +102,7 @@ class RecipeController {
                     nutritionDict = nutritionArrayOfDictionary.first?["value"] as? Int {
                     
                     completion(calorie: nutritionDict)
-                    print(nutritionDict)
+                    //print(nutritionDict)
                 }else {
                     completion(calorie: 0)
                 }
@@ -100,43 +111,30 @@ class RecipeController {
     }
     
     
-    
-    func getRecipeWithSearchTerm(searchTerm: String, completion: (recipes: [Recipe]) -> Void) {
+    func getRecipesWithSearchTerm(searchTerm: String, completion: (success: Bool, recipes: [Recipe]) -> Void) {
         
-        let urlParameters = ["_app_id": appIdKey, "_app_key": apiKey, "q" : "\(searchTerm)", "maxResult": "35", "start": "0", "requirePictures": "true",
-                             "allowedDiet": "390^Pescetarian", "alloweDiet[]": "388^Lacto vegetarian"]
-        
+        let urlParameters = ["_app_id": appIdKey, "_app_key": apiKey, "q" : "\(searchTerm)", "maxResult": "35", "start": "0"]
         if let url = baseURL {
-            NetworkController.performRequestForURL(url, httpMethod: .Get, urlParameters: urlParameters, body: nil , completion: { (data, error) in
-                if let data = data, let jsonAnyObject = try? NSJSONSerialization.JSONObjectWithData(data, options: []), let jsonDictionary = jsonAnyObject as? [String: AnyObject], let matchesArray = jsonDictionary["matches"] as? [[String: AnyObject]] {
-                    
-                    var recipes: [Recipe] = []
-                    
-                    for matchDictionary in matchesArray {
-                        if let recipe = Recipe(jsonDictionary: matchDictionary) {
-                            recipes.append(recipe)
-                        }
-                        
-                    }
-                    completion(recipes: recipes)
-                    
-                    
-                } else {
-                    completion(recipes: [])
+            NetworkController.performRequestForURL(url, httpMethod: .Get, urlParameters: urlParameters, body: nil, completion: { (data, error) in
+                guard let data = data , let jsonAnyObject = try? NSJSONSerialization.JSONObjectWithData(data, options: []), let jsonDictionary = jsonAnyObject as? [String: AnyObject], let matchesArray = jsonDictionary["matches"] as? [[String: AnyObject]] else {completion(success: false, recipes: [])
+                    return
                 }
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    let recipes = matchesArray.flatMap{Recipe(jsonDictionary: $0)}
+                    
+                    completion(success: true, recipes: recipes)
+                })
+                
             })
-            
-        } else {
-            print("error fetching url")
-            completion(recipes: [])
-            
         }
-        
-        
     }
     
+    
+    
+    
+    
     func getAllRecipes(completion:(recipes: [Recipe]) -> Void) {
-        let urlParameters = ["_app_id": appIdKey, "_app_key": apiKey, "maxResult": "35", "start": "0", "requirePictures": "true"]
+        let urlParameters = ["_app_id": appIdKey, "_app_key": apiKey, "maxResult": "35", "start": "0",  /*"requirePictures": "true"*/]
         
         if let url = baseURL {
             NetworkController.performRequestForURL(url, httpMethod: .Get, urlParameters: urlParameters, body: nil , completion: { (data, error) in
@@ -145,16 +143,17 @@ class RecipeController {
                     let jsonDictionary = jsonAnyObject as? [String: AnyObject],
                     let matchesArray = jsonDictionary["matches"] as? [[String: AnyObject]] {
                     
-                    var recipes: [Recipe] = []
+                    //                    var recipes: [Recipe] = []
                     
                     for matchDictionary in matchesArray {
                         
                         if let recipe = Recipe(jsonDictionary: matchDictionary) {
-                            recipes.append(recipe)
+                            self.recipes.append(recipe)
                         }
                         
+                        
                     }
-                    completion(recipes: recipes)
+                    completion(recipes: self.recipes)
                     
                     
                 } else {

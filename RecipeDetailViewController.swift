@@ -17,9 +17,7 @@ class RecipeDetailViewController: UIViewController, UITableViewDelegate, UITable
     @IBOutlet weak var recipeCourseLabel: UILabel!
     @IBOutlet weak var recipeImage: UIImageView!
     @IBOutlet weak var recipeNameLabel: UILabel!
-  //  @IBOutlet weak var recipeRatingLabel: UILabel!
     @IBOutlet weak var cookingTimeLabel: UILabel!
-    
     @IBOutlet weak var IngredientsTableView: UITableView!
     
     var groceryListVC = GroceryListTableViewController()
@@ -32,6 +30,7 @@ class RecipeDetailViewController: UIViewController, UITableViewDelegate, UITable
             
             
         }
+        automaticallyAdjustsScrollViewInsets = false
     }
     
     
@@ -128,8 +127,8 @@ class RecipeDetailViewController: UIViewController, UITableViewDelegate, UITable
         return cell
         
         
-        
     }
+    
     @IBOutlet weak var height: NSLayoutConstraint!
     
     override func updateViewConstraints() {
@@ -149,7 +148,6 @@ class RecipeDetailViewController: UIViewController, UITableViewDelegate, UITable
             guard let selectedRow = indexPath?.row  else { return }
             let recipeIngredient = GroceryController.ingredients[selectedRow]
             GroceryController.ingredients.append(recipeIngredient)
-            print(GroceryController.ingredients)
             
         }
         
