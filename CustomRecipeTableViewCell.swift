@@ -39,6 +39,8 @@ class CustomRecipeTableViewCell: UITableViewCell {
         let imageView4 = UIImageView(frame: CGRect(x: 54, y: 0, width: 15, height: 15))
         
         let imageView5 = UIImageView(frame: CGRect(x: 72, y: 0, width: 15, height: 15))
+        imageView1.contentMode = .ScaleToFill
+        imageView5.contentMode = .ScaleToFill
         
         ratingStarView.addSubview(imageView1)
         ratingStarView.addSubview(imageView2)
@@ -108,18 +110,21 @@ class CustomRecipeTableViewCell: UITableViewCell {
         totalTimeLabel.text = String(recipe.totalTimeInSeconds)
         
         let seconds = recipe.totalTimeInSeconds
-        let (h,m,s) = secondsToHoursMinutesSeconds(seconds)
-        if  h != 0 || s != 0 {
-            totalTimeLabel.text = "Cook time is \(h) hours, \(m) minutes, \(s) seconds"
-        }else {
+        let (h,m,_) = secondsToHoursMinutesSeconds(seconds)
+        if  h != 0 && m != 0{
+            totalTimeLabel.text = "Cook time is \(h) hours, \(m) minutes"
+        }else if m != 0 {
             totalTimeLabel.text = "Cook time is \(m) minutes"
+        } else {
+            totalTimeLabel.text = "Cook time is \(h) hours"
         }
     }
-    
-    
-    func secondsToHoursMinutesSeconds (seconds : Int) -> (Int, Int, Int) {
-        return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
-    }
+
+
+
+func secondsToHoursMinutesSeconds (seconds : Int) -> (Int, Int, Int) {
+    return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
+}
 }
 
 

@@ -31,7 +31,7 @@ class RecipeController {
     }
     init() {
         getAllRecipes { (recipes) in
-            //print(recipes)
+            
         }
         
         
@@ -134,7 +134,7 @@ class RecipeController {
     
     
     func getAllRecipes(completion:(recipes: [Recipe]) -> Void) {
-        let urlParameters = ["_app_id": appIdKey, "_app_key": apiKey, "maxResult": "35", "start": "0",  /*"requirePictures": "true"*/]
+        let urlParameters = ["_app_id": appIdKey, "_app_key": apiKey, "maxResult": "350", "start": "0",  "requirePictures": "true", "allowedCuisine[]": "cuisine^cuisine-indian"]
         
         if let url = baseURL {
             NetworkController.performRequestForURL(url, httpMethod: .Get, urlParameters: urlParameters, body: nil , completion: { (data, error) in

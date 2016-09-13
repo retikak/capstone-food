@@ -18,8 +18,6 @@ class SearchResultsTableViewController: UITableViewController {
         
     }
     
-    
-    
     // MARK: - Table view data source
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -43,5 +41,6 @@ class SearchResultsTableViewController: UITableViewController {
         let cell = tableView.cellForRowAtIndexPath(indexPath)
         self.presentingViewController?.performSegueWithIdentifier("toRecipeDetailFromSearch", sender: cell)
         
+           
     }
 }

@@ -22,7 +22,6 @@
 		798671171D80C5C600D0AF64 /* StoresMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798671161D80C5C600D0AF64 /* StoresMapViewController.swift */; };
 		798A761F1D83D7980004911E /* SearchResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798A761E1D83D7980004911E /* SearchResultsTableViewController.swift */; };
 		79B8FAEB1D73AB47004883DF /* CustomRecipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B8FAEA1D73AB47004883DF /* CustomRecipeTableViewCell.swift */; };
-		79CA2B0A1D875EFC00BE0214 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CA2B091D875EFC00BE0214 /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,7 +42,6 @@
 		798671161D80C5C600D0AF64 /* StoresMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoresMapViewController.swift; sourceTree = "<group>"; };
 		798A761E1D83D7980004911E /* SearchResultsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsTableViewController.swift; sourceTree = "<group>"; };
 		79B8FAEA1D73AB47004883DF /* CustomRecipeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomRecipeTableViewCell.swift; path = ../CustomRecipeTableViewCell.swift; sourceTree = "<group>"; };
-		79CA2B091D875EFC00BE0214 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,7 +106,6 @@
 			isa = PBXGroup;
 			children = (
 				798A761E1D83D7980004911E /* SearchResultsTableViewController.swift */,
-				79CA2B091D875EFC00BE0214 /* DetailViewController.swift */,
 				791D18941D7630A5000F4B59 /* GroceryListTableViewController.swift */,
 				791147991D6F995A00E1B932 /* RecipeListTableViewController.swift */,
 				7911479B1D6F997400E1B932 /* RecipeDetailViewController.swift */,
@@ -206,7 +203,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				79CA2B0A1D875EFC00BE0214 /* DetailViewController.swift in Sources */,
 				791147821D6F696600E1B932 /* AppDelegate.swift in Sources */,
 				791D18951D7630A5000F4B59 /* GroceryListTableViewController.swift in Sources */,
 				7911479A1D6F995A00E1B932 /* RecipeListTableViewController.swift in Sources */,
