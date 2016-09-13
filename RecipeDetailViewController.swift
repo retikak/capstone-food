@@ -29,8 +29,6 @@ class RecipeDetailViewController: UIViewController, UITableViewDelegate, UITable
         super.viewDidLoad()
         if let recipe = recipe {
             updateWithRecipe(recipe)
-            
-            
         }
         let size: CGFloat = 35.0
         recipeCaloriesLabel.textAlignment = .Center

@@ -20,7 +20,7 @@
                                 <rect key="frame" x="0.0" y="92" width="600" height="176"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Orw-4v-3qx" id="61I-wJ-mwL">
-                                    <rect key="frame" x="0.0" y="0.0" width="567" height="175.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="567" height="176"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="6gl-sE-fTI">
@@ -87,9 +87,6 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="hug-cP-ryy"/>
-                    <connections>
-                        <segue destination="p70-Cv-NHV" kind="show" identifier="toRecipeDetailFromSearch" id="wnu-s6-i4l"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="11q-kJ-GeI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -98,7 +95,7 @@
         <!--Recipe Detail View Controller-->
         <scene sceneID="byD-GC-ho3">
             <objects>
-                <viewController id="p70-Cv-NHV" customClass="RecipeDetailViewController" customModule="capstone_Food" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="detailVC" id="p70-Cv-NHV" customClass="RecipeDetailViewController" customModule="capstone_Food" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="cOw-Ft-XJk"/>
                         <viewControllerLayoutGuide type="bottom" id="0Wk-Rw-VnZ"/>
@@ -323,7 +320,7 @@
                                 <rect key="frame" x="0.0" y="28" width="600" height="176"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Z0M-fi-wEI" id="hBH-m8-nAL">
-                                    <rect key="frame" x="0.0" y="0.0" width="567" height="175.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="567" height="176"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="V4d-bP-H5Y">
@@ -380,6 +377,7 @@
                                     <outlet property="recipeNameLabel" destination="hiY-3h-MP5" id="OQS-Mi-b2G"/>
                                     <outlet property="sourceNameLabel" destination="f3f-mP-txY" id="Raw-tp-pyY"/>
                                     <outlet property="totalTimeLabel" destination="mzM-ua-pNf" id="Sue-WX-qKk"/>
+                                    <segue destination="p70-Cv-NHV" kind="show" identifier="toDetailVC" id="lxh-Hg-det"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -392,7 +390,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yOK-he-gBj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2303" y="876"/>
+            <point key="canvasLocation" x="2313" y="908"/>
         </scene>
         <!--Stores Map View Controller-->
         <scene sceneID="ox9-67-NCk">

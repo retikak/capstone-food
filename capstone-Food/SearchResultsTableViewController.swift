@@ -37,10 +37,21 @@ class SearchResultsTableViewController: UITableViewController {
     }
     
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let cell = tableView.cellForRowAtIndexPath(indexPath)
-        self.presentingViewController?.performSegueWithIdentifier("toRecipeDetailFromSearch", sender: cell)
         
-           
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "toDetailVC" {
+            if let detailVC = segue.destinationViewController as? RecipeDetailViewController {
+                let indexPath = self.tableView.indexPathForSelectedRow
+                if let selectedRow = indexPath?.row {
+                    let recipe = filteredRecipes[selectedRow]
+                    detailVC.recipe = recipe
+                }
+            }
+        }
     }
+    
+    
+    
+    
+    
 }
