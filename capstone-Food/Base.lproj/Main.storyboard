@@ -87,6 +87,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="hug-cP-ryy"/>
+                    <connections>
+                        <segue destination="p70-Cv-NHV" kind="show" identifier="toRecipeDetailFromSearch" id="7uY-a3-VYl"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="11q-kJ-GeI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -316,7 +319,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" indentationLevel="1" indentationWidth="10" reuseIdentifier="resultsCell" rowHeight="176" id="Z0M-fi-wEI" customClass="CustomRecipeTableViewCell" customModule="capstone_Food" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" indentationLevel="1" indentationWidth="10" reuseIdentifier="ResultCell" rowHeight="176" id="Z0M-fi-wEI" customClass="CustomRecipeTableViewCell" customModule="capstone_Food" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="600" height="176"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Z0M-fi-wEI" id="hBH-m8-nAL">
@@ -372,12 +375,11 @@
                                 </tableViewCellContentView>
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <connections>
-                                    <outlet property="ratingStarView" destination="JdL-Cl-b3p" id="ZXZ-eM-gT5"/>
-                                    <outlet property="recipeImage" destination="ScA-oF-tR1" id="iuU-Iy-j7e"/>
-                                    <outlet property="recipeNameLabel" destination="hiY-3h-MP5" id="OQS-Mi-b2G"/>
-                                    <outlet property="sourceNameLabel" destination="f3f-mP-txY" id="Raw-tp-pyY"/>
-                                    <outlet property="totalTimeLabel" destination="mzM-ua-pNf" id="Sue-WX-qKk"/>
-                                    <segue destination="p70-Cv-NHV" kind="show" identifier="toDetailVC" id="lxh-Hg-det"/>
+                                    <outlet property="ratingStarView" destination="JdL-Cl-b3p" id="rkq-6B-jeu"/>
+                                    <outlet property="recipeImage" destination="ScA-oF-tR1" id="itN-f2-ajL"/>
+                                    <outlet property="recipeNameLabel" destination="f3f-mP-txY" id="rNG-TM-LrL"/>
+                                    <outlet property="sourceNameLabel" destination="hiY-3h-MP5" id="Uua-3B-Pyk"/>
+                                    <outlet property="totalTimeLabel" destination="mzM-ua-pNf" id="0z5-gx-rps"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -390,7 +392,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yOK-he-gBj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2313" y="908"/>
+            <point key="canvasLocation" x="2377" y="876"/>
         </scene>
         <!--Stores Map View Controller-->
         <scene sceneID="ox9-67-NCk">
@@ -500,6 +502,6 @@
         <image name="Vegetarian Food-50" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="RWX-Fe-tJ6"/>
+        <segue reference="7uY-a3-VYl"/>
     </inferredMetricsTieBreakers>
 </document>

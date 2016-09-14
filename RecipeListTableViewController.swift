@@ -8,9 +8,13 @@
 
 import UIKit
 
+
+
 class RecipeListTableViewController: UITableViewController, UISearchResultsUpdating {
     
     var searchController: UISearchController?
+    var searchResultsTableVC = SearchResultsTableViewController()
+
     
     
     override func viewDidLoad() {
@@ -29,12 +33,27 @@ class RecipeListTableViewController: UITableViewController, UISearchResultsUpdat
         
     }
     
+    
+    
     func setUpSearchController() {
-        let resultsController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("resultsController")
+        
+      // let resultsController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("resultsController")
+        
+        let resultsController = SearchResultsTableViewController()
+        
+        resultsController.filteredRecipes = RecipeController.sharedController.recipes
+        
         searchController = UISearchController(searchResultsController: resultsController)
+        //resultsController.delegate = self
+        
+        
+        
         guard let searchController = searchController else {return}
         searchController.searchResultsUpdater = self
         tableView.tableHeaderView = searchController.searchBar
+     //   searchController.searchResultsUpdater = resultsController
+        searchController.hidesNavigationBarDuringPresentation = true
+        
         searchController.searchBar.placeholder = "Search by ingredient, recipe name or cuisine type"
         searchController.searchBar.sizeToFit()
         definesPresentationContext = true
@@ -46,8 +65,9 @@ class RecipeListTableViewController: UITableViewController, UISearchResultsUpdat
     
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         guard let searchTerm = searchController.searchBar.text?.lowercaseString else {return}
-       guard let resultsController = searchController.searchResultsController as? SearchResultsTableViewController else {return}
+        guard let resultsController = searchController.searchResultsController as? SearchResultsTableViewController else {return}
         resultsController.filteredRecipes = RecipeController.sharedController.recipes.filter({$0.recipeName.lowercaseString.containsString(searchTerm)})
+        
         resultsController.tableView.reloadData()
     }
     
@@ -91,7 +111,22 @@ class RecipeListTableViewController: UITableViewController, UISearchResultsUpdat
                     
                 }
             }
+            
+            
         }
     }
-}
+    
+//        if segue.identifier == "toRecipeDetailFromSearch" {
+//            if let detailViewController = segue.destinationViewController as? RecipeDetailViewController,
+//                let sender = sender as? CustomRecipeTableViewCell{
+//                guard let selectedIndexPath = (searchController?.searchResultsController as? SearchResultsTableViewController)?.tableView.indexPathForCell(sender) else {return}
+//                let selectedRow = selectedIndexPath.row
+//            let recipe = searchResultsTableVC.filteredRecipes[selectedRow]
+//            
+//            detailViewController.recipe = recipe
+//        }
+//    }
+    
 
+    
+}

@@ -19,6 +19,7 @@
 		791147A81D6FA7CD00E1B932 /* NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791147A71D6FA7CD00E1B932 /* NetworkController.swift */; };
 		791147AC1D6FA7EF00E1B932 /* ImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791147AB1D6FA7EF00E1B932 /* ImageController.swift */; };
 		791D18951D7630A5000F4B59 /* GroceryListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791D18941D7630A5000F4B59 /* GroceryListTableViewController.swift */; };
+		797E94771D89C1C7006694A1 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797E94761D89C1C7006694A1 /* Protocols.swift */; };
 		798671171D80C5C600D0AF64 /* StoresMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798671161D80C5C600D0AF64 /* StoresMapViewController.swift */; };
 		798A761F1D83D7980004911E /* SearchResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798A761E1D83D7980004911E /* SearchResultsTableViewController.swift */; };
 		79B8FAEB1D73AB47004883DF /* CustomRecipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B8FAEA1D73AB47004883DF /* CustomRecipeTableViewCell.swift */; };
@@ -39,6 +40,7 @@
 		791147A71D6FA7CD00E1B932 /* NetworkController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetworkController.swift; path = ../NetworkController.swift; sourceTree = "<group>"; };
 		791147AB1D6FA7EF00E1B932 /* ImageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageController.swift; sourceTree = "<group>"; };
 		791D18941D7630A5000F4B59 /* GroceryListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroceryListTableViewController.swift; sourceTree = "<group>"; };
+		797E94761D89C1C7006694A1 /* Protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		798671161D80C5C600D0AF64 /* StoresMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoresMapViewController.swift; sourceTree = "<group>"; };
 		798A761E1D83D7980004911E /* SearchResultsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsTableViewController.swift; sourceTree = "<group>"; };
 		79B8FAEA1D73AB47004883DF /* CustomRecipeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomRecipeTableViewCell.swift; path = ../CustomRecipeTableViewCell.swift; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 				791147881D6F696600E1B932 /* Assets.xcassets */,
 				7911478A1D6F696600E1B932 /* LaunchScreen.storyboard */,
 				7911478D1D6F696600E1B932 /* Info.plist */,
+				797E94761D89C1C7006694A1 /* Protocols.swift */,
 			);
 			path = "capstone-Food";
 			sourceTree = "<group>";
@@ -105,6 +108,7 @@
 		791147A11D6FA74200E1B932 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				79B8FAEA1D73AB47004883DF /* CustomRecipeTableViewCell.swift */,
 				798A761E1D83D7980004911E /* SearchResultsTableViewController.swift */,
 				791D18941D7630A5000F4B59 /* GroceryListTableViewController.swift */,
 				791147991D6F995A00E1B932 /* RecipeListTableViewController.swift */,
@@ -117,7 +121,6 @@
 		791147A21D6FA75100E1B932 /* ModelControllers */ = {
 			isa = PBXGroup;
 			children = (
-				79B8FAEA1D73AB47004883DF /* CustomRecipeTableViewCell.swift */,
 				791147A71D6FA7CD00E1B932 /* NetworkController.swift */,
 				791147AB1D6FA7EF00E1B932 /* ImageController.swift */,
 				791147A51D6FA7BA00E1B932 /* RecipeController.swift */,
@@ -212,6 +215,7 @@
 				791147A61D6FA7BA00E1B932 /* RecipeController.swift in Sources */,
 				791147AC1D6FA7EF00E1B932 /* ImageController.swift in Sources */,
 				7911479C1D6F997400E1B932 /* RecipeDetailViewController.swift in Sources */,
+				797E94771D89C1C7006694A1 /* Protocols.swift in Sources */,
 				79B8FAEB1D73AB47004883DF /* CustomRecipeTableViewCell.swift in Sources */,
 				798A761F1D83D7980004911E /* SearchResultsTableViewController.swift in Sources */,
 				791147A81D6FA7CD00E1B932 /* NetworkController.swift in Sources */,

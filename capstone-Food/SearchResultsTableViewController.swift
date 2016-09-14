@@ -8,13 +8,22 @@
 
 import UIKit
 
+
 class SearchResultsTableViewController: UITableViewController {
+    //var delegate: SelectedCellProtocol?
     
+   
     var filteredRecipes: [Recipe] = []
+    
+//    func didSelectCell(recipe: Recipe) {
+//        print(recipe)
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.reloadData()
+        //delegate = self
+        
         
     }
     
@@ -27,7 +36,11 @@ class SearchResultsTableViewController: UITableViewController {
     
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("resultsCell", forIndexPath: indexPath) as? CustomRecipeTableViewCell
+       // tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "ResultCell")
+        //tableView.registerClass(UITableViewCell.classForKeyedArchiver(), forCellReuseIdentifier: "ResultCell")
+
+        let cell = tableView.dequeueReusableCellWithIdentifier("ResultCell", forIndexPath: indexPath) as? CustomRecipeTableViewCell
+
         let recipe = filteredRecipes[indexPath.item]
         cell?.updateCellWithRecipe(recipe)
         resignFirstResponder()
@@ -36,22 +49,38 @@ class SearchResultsTableViewController: UITableViewController {
         
     }
     
+//    func didSelectCell(text: String) {
+//        print(text)
+//    }
+    
     
         
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "toDetailVC" {
-            if let detailVC = segue.destinationViewController as? RecipeDetailViewController {
-                let indexPath = self.tableView.indexPathForSelectedRow
-                if let selectedRow = indexPath?.row {
-                    let recipe = filteredRecipes[selectedRow]
-                    detailVC.recipe = recipe
-                }
-            }
-        }
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+       let recipe = filteredRecipes[indexPath.row]
+        self.presentingViewController?.performSegueWithIdentifier("toRecipeDetailFromSearch", sender: recipe as? AnyObject)
+         let detailVC = RecipeDetailViewController()
+            detailVC.recipe = recipe
+        
     }
     
     
     
+    //        override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    //                    //self.delegate?.didSelectCell(cell.textLabel.text) as? CustomRecipeTableViewCell
+    //                   let recipe = RecipeController.sharedController.recipes[indexPath.row]
+    //                    self.presentingViewController?.performSegueWithIdentifier("toRecipeDetail", sender: recipe as? AnyObject)
+    //                     let detailVC = RecipeDetailViewController()
+    //
+    //
+    //
+    //                    detailVC.recipe = recipe
+    //
+    //                }
+    //
     
     
-}
+
+    }
+    
+    
+

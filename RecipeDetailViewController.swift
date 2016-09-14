@@ -23,6 +23,10 @@ class RecipeDetailViewController: UIViewController, UITableViewDelegate, UITable
     
     var groceryListVC = GroceryListTableViewController()
     var recipe: Recipe?
+    
+    func didSelectCell(recipe: Recipe) {
+        print(recipe.recipeName)
+    }
    
     
     override func viewDidLoad() {
@@ -72,6 +76,16 @@ class RecipeDetailViewController: UIViewController, UITableViewDelegate, UITable
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
         self.IngredientsTableView.reloadData()
+        
+        if self.navigationController?.navigationBar == nil {
+            let backButton: UIButton = UIButton()
+            backButton.frame = CGRectMake(0,0, 100, 40)
+            backButton.titleLabel?.text = "Back"
+            backButton.backgroundColor = UIColor.greenColor()
+            backButton.tintColor = UIColor.blueColor()
+            self.view.addSubview(backButton)
+            
+        }
         
     }
     

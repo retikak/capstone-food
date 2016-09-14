@@ -148,7 +148,10 @@ class RecipeController {
                     for matchDictionary in matchesArray {
                         
                         if let recipe = Recipe(jsonDictionary: matchDictionary) {
-                            self.recipes.append(recipe)
+                            
+                           self.recipes.append(recipe)
+                            
+                            
                         }
                         
                         
