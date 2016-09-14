@@ -21,8 +21,8 @@ class RecipeListTableViewController: UITableViewController, UISearchResultsUpdat
         super.viewDidLoad()
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 70.0
-        
         setUpSearchController()
+        
         RecipeController.sharedController.getAllRecipes { (recipes) in
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 print("got recipes")
@@ -33,31 +33,21 @@ class RecipeListTableViewController: UITableViewController, UISearchResultsUpdat
         
     }
     
+
+    
     
     
     func setUpSearchController() {
         
-      // let resultsController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("resultsController")
-        
-        let resultsController = SearchResultsTableViewController()
-        
-        resultsController.filteredRecipes = RecipeController.sharedController.recipes
-        
+        let resultsController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("resultsController") as? SearchResultsTableViewController
+        resultsController?.delegate = self
         searchController = UISearchController(searchResultsController: resultsController)
-        //resultsController.delegate = self
-        
-        
-        
         guard let searchController = searchController else {return}
         searchController.searchResultsUpdater = self
-        tableView.tableHeaderView = searchController.searchBar
-     //   searchController.searchResultsUpdater = resultsController
         searchController.hidesNavigationBarDuringPresentation = true
-        
         searchController.searchBar.placeholder = "Search by ingredient, recipe name or cuisine type"
-        searchController.searchBar.sizeToFit()
-        definesPresentationContext = true
-        
+        searchController.definesPresentationContext = true
+        tableView.tableHeaderView = searchController.searchBar
     }
     
     
@@ -108,25 +98,21 @@ class RecipeListTableViewController: UITableViewController, UISearchResultsUpdat
                 if let selectedRow = indexPath?.row {
                     let recipe = RecipeController.sharedController.recipes[selectedRow]
                     detailVC.recipe = recipe
-                    
                 }
             }
-            
-            
+        } else if segue.identifier == "toRecipeDetailFromSearch" {
+            let detailVC = segue.destinationViewController as? RecipeDetailViewController
+            let recipe = sender as? Recipe
+            detailVC?.recipe = recipe
         }
     }
     
-//        if segue.identifier == "toRecipeDetailFromSearch" {
-//            if let detailViewController = segue.destinationViewController as? RecipeDetailViewController,
-//                let sender = sender as? CustomRecipeTableViewCell{
-//                guard let selectedIndexPath = (searchController?.searchResultsController as? SearchResultsTableViewController)?.tableView.indexPathForCell(sender) else {return}
-//                let selectedRow = selectedIndexPath.row
-//            let recipe = searchResultsTableVC.filteredRecipes[selectedRow]
-//            
-//            detailViewController.recipe = recipe
-//        }
-//    }
-    
+}
 
+extension RecipeListTableViewController: SelectedCellProtocol {
     
+    func didSelectedRecipe(recipe: Recipe) {
+        performSegueWithIdentifier("toRecipeDetailFromSearch", sender: recipe)
+        
+    }
 }

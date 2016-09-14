@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Recipe  {
+class Recipe  {
     
     private let kId = "id"
     private let kRecipeName = "recipeName"

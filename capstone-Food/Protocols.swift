@@ -9,6 +9,6 @@
 import Foundation
 
 
-protocol selectedCellProtocol {
-    func didSelectedCell(text: String)
+protocol SelectedCellProtocol: class {
+    func didSelectedRecipe(recipe: Recipe)
 }

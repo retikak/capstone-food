@@ -77,6 +77,7 @@
 			isa = PBXGroup;
 			children = (
 				791147811D6F696600E1B932 /* AppDelegate.swift */,
+				797E94761D89C1C7006694A1 /* Protocols.swift */,
 				791147851D6F696600E1B932 /* Main.storyboard */,
 				7911479F1D6FA72B00E1B932 /* Model */,
 				791147A01D6FA73800E1B932 /* Views */,
@@ -85,7 +86,6 @@
 				791147881D6F696600E1B932 /* Assets.xcassets */,
 				7911478A1D6F696600E1B932 /* LaunchScreen.storyboard */,
 				7911478D1D6F696600E1B932 /* Info.plist */,
-				797E94761D89C1C7006694A1 /* Protocols.swift */,
 			);
 			path = "capstone-Food";
 			sourceTree = "<group>";
