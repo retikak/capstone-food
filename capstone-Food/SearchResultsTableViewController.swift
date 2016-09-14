@@ -12,12 +12,12 @@ import UIKit
 class SearchResultsTableViewController: UITableViewController {
     //var delegate: SelectedCellProtocol?
     
-   
+    
     var filteredRecipes: [Recipe] = []
     
-//    func didSelectCell(recipe: Recipe) {
-//        print(recipe)
-//    }
+    //    func didSelectCell(recipe: Recipe) {
+    //        print(recipe)
+    //    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,30 +36,18 @@ class SearchResultsTableViewController: UITableViewController {
     
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-       // tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "ResultCell")
-        //tableView.registerClass(UITableViewCell.classForKeyedArchiver(), forCellReuseIdentifier: "ResultCell")
-
-        let cell = tableView.dequeueReusableCellWithIdentifier("ResultCell", forIndexPath: indexPath) as? CustomRecipeTableViewCell
-
+        let cell = tableView.dequeueReusableCellWithIdentifier("ResultCell", forIndexPath: indexPath) as? ResultTableViewCell
         let recipe = filteredRecipes[indexPath.item]
+//        cell?.textLabel?.text = recipe.recipeName
         cell?.updateCellWithRecipe(recipe)
-        resignFirstResponder()
-        
         return cell ?? CustomRecipeTableViewCell()
-        
     }
-    
-//    func didSelectCell(text: String) {
-//        print(text)
-//    }
-    
-    
-        
+
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-       let recipe = filteredRecipes[indexPath.row]
+        let recipe = filteredRecipes[indexPath.row]
         self.presentingViewController?.performSegueWithIdentifier("toRecipeDetailFromSearch", sender: recipe as? AnyObject)
-         let detailVC = RecipeDetailViewController()
-            detailVC.recipe = recipe
+        let detailVC = RecipeDetailViewController()
+        detailVC.recipe = recipe
         
     }
     
@@ -79,8 +67,8 @@ class SearchResultsTableViewController: UITableViewController {
     //
     
     
+    
+}
 
-    }
-    
-    
+
 

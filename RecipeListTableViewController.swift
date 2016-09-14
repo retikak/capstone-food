@@ -37,27 +37,14 @@ class RecipeListTableViewController: UITableViewController, UISearchResultsUpdat
     
     func setUpSearchController() {
         
-      // let resultsController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("resultsController")
-        
-        let resultsController = SearchResultsTableViewController()
-        
-        resultsController.filteredRecipes = RecipeController.sharedController.recipes
-        
+      let resultsController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("resultsController")
         searchController = UISearchController(searchResultsController: resultsController)
-        //resultsController.delegate = self
-        
-        
-        
         guard let searchController = searchController else {return}
         searchController.searchResultsUpdater = self
-        tableView.tableHeaderView = searchController.searchBar
-     //   searchController.searchResultsUpdater = resultsController
         searchController.hidesNavigationBarDuringPresentation = true
-        
         searchController.searchBar.placeholder = "Search by ingredient, recipe name or cuisine type"
-        searchController.searchBar.sizeToFit()
-        definesPresentationContext = true
-        
+        searchController.definesPresentationContext = true
+        tableView.tableHeaderView = searchController.searchBar
     }
     
     
