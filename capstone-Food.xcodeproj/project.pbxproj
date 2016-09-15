@@ -20,6 +20,7 @@
 		791147AC1D6FA7EF00E1B932 /* ImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791147AB1D6FA7EF00E1B932 /* ImageController.swift */; };
 		791D18951D7630A5000F4B59 /* GroceryListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791D18941D7630A5000F4B59 /* GroceryListTableViewController.swift */; };
 		797E94771D89C1C7006694A1 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797E94761D89C1C7006694A1 /* Protocols.swift */; };
+		797E947D1D8A4B96006694A1 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 797E947C1D8A4B96006694A1 /* MapKit.framework */; };
 		798671171D80C5C600D0AF64 /* StoresMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798671161D80C5C600D0AF64 /* StoresMapViewController.swift */; };
 		798A761F1D83D7980004911E /* SearchResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798A761E1D83D7980004911E /* SearchResultsTableViewController.swift */; };
 		79B8FAEB1D73AB47004883DF /* CustomRecipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B8FAEA1D73AB47004883DF /* CustomRecipeTableViewCell.swift */; };
@@ -41,6 +42,7 @@
 		791147AB1D6FA7EF00E1B932 /* ImageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageController.swift; sourceTree = "<group>"; };
 		791D18941D7630A5000F4B59 /* GroceryListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroceryListTableViewController.swift; sourceTree = "<group>"; };
 		797E94761D89C1C7006694A1 /* Protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
+		797E947C1D8A4B96006694A1 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		798671161D80C5C600D0AF64 /* StoresMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoresMapViewController.swift; sourceTree = "<group>"; };
 		798A761E1D83D7980004911E /* SearchResultsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsTableViewController.swift; sourceTree = "<group>"; };
 		79B8FAEA1D73AB47004883DF /* CustomRecipeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomRecipeTableViewCell.swift; path = ../CustomRecipeTableViewCell.swift; sourceTree = "<group>"; };
@@ -51,6 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				797E947D1D8A4B96006694A1 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,6 +63,7 @@
 		791147751D6F696600E1B932 = {
 			isa = PBXGroup;
 			children = (
+				797E947C1D8A4B96006694A1 /* MapKit.framework */,
 				791147801D6F696600E1B932 /* capstone-Food */,
 				7911477F1D6F696600E1B932 /* Products */,
 			);
@@ -110,9 +114,9 @@
 			children = (
 				79B8FAEA1D73AB47004883DF /* CustomRecipeTableViewCell.swift */,
 				798A761E1D83D7980004911E /* SearchResultsTableViewController.swift */,
-				791D18941D7630A5000F4B59 /* GroceryListTableViewController.swift */,
 				791147991D6F995A00E1B932 /* RecipeListTableViewController.swift */,
 				7911479B1D6F997400E1B932 /* RecipeDetailViewController.swift */,
+				791D18941D7630A5000F4B59 /* GroceryListTableViewController.swift */,
 				798671161D80C5C600D0AF64 /* StoresMapViewController.swift */,
 			);
 			name = ViewControllers;

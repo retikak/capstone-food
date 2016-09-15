@@ -17,8 +17,6 @@ class RecipeController {
     static let sharedController = RecipeController()
     weak var delegate: RecipeControllerDelegate?
     
-    
-    
     private (set) var recipes: [Recipe] = [] {
         
         didSet {
@@ -29,20 +27,14 @@ class RecipeController {
         }
         
     }
-    init() {
-        getAllRecipes { (recipes) in
-            
-        }
-        
-        
-    }
-    
-    
+
     private let baseURLKey = "https://api.yummly.com/v1"
     private let apiKey = "db906b1bb9aa10be45ffb3d4676d45e8"
     private let appIdKey = "edd3f7af"
     private let baseURL = NSURL(string:"https://api.yummly.com/v1/api/recipes")
     private let baseURLForDirections = NSURL(string: "http://api.yummly.com/v1/api/recipe/recipe-id?")
+    
+    private var startPageIndex = 0
     
     
     /*
@@ -80,11 +72,8 @@ class RecipeController {
                 } else {
                     completion(url: nil)
                 }
-                
             })
         }
-        
-        
     }
     
     func getNutritionInfo(recipe: Recipe, completion: (calorie: Int) ->Void) {
@@ -134,7 +123,8 @@ class RecipeController {
     
     
     func getAllRecipes(completion:(recipes: [Recipe]) -> Void) {
-        let urlParameters = ["_app_id": appIdKey, "_app_key": apiKey, "maxResult": "350", "start": "0",  "requirePictures": "true", "allowedCuisine[]": "cuisine^cuisine-indian"]
+        print("made a network call")
+        let urlParameters = ["_app_id": appIdKey, "_app_key": apiKey, "maxResult": "50", "start": "\(startPageIndex)",  "requirePictures": "true", "allowedCuisine[]": "cuisine^cuisine-indian"]
         
         if let url = baseURL {
             NetworkController.performRequestForURL(url, httpMethod: .Get, urlParameters: urlParameters, body: nil , completion: { (data, error) in
@@ -143,21 +133,15 @@ class RecipeController {
                     let jsonDictionary = jsonAnyObject as? [String: AnyObject],
                     let matchesArray = jsonDictionary["matches"] as? [[String: AnyObject]] {
                     
-                    //                    var recipes: [Recipe] = []
-                    
                     for matchDictionary in matchesArray {
                         
                         if let recipe = Recipe(jsonDictionary: matchDictionary) {
-                            
-                           self.recipes.append(recipe)
-                            
+                            self.recipes.append(recipe)
                             
                         }
-                        
-                        
                     }
+                    self.startPageIndex += 50
                     completion(recipes: self.recipes)
-                    
                     
                 } else {
                     completion(recipes: [])
@@ -169,8 +153,6 @@ class RecipeController {
             completion(recipes: [])
             
         }
-        
-        
     }
     
 }

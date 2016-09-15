@@ -8,62 +8,55 @@
 
 import UIKit
 import CoreLocation
+import MapKit
 
-class StoresMapViewController: UIViewController {
+class StoresMapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
-    @IBOutlet weak var StoreListTableView: UITableView!
     
-//    @IBOutlet weak var mapView: MKMapView!
+   // @IBOutlet weak var GroceryListTableView: UITableView!
+    @IBOutlet weak var mapView: MKMapView!
     
-    var locationManger: CLLocationManager?
-    var startLocation: CLLocation?
+    var locationManger = CLLocationManager()
     
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        locationManger = CLLocationManager()
-        locationManger?.delegate = self
-        locationManger?.desiredAccuracy = kCLLocationAccuracyBest
-        locationManger?.requestAlwaysAuthorization()
+        locationManger.delegate = self
+        locationManger.desiredAccuracy = kCLLocationAccuracyBest
+        locationManger.requestWhenInUseAuthorization()
+        locationManger.startUpdatingLocation()
+    }
+    
+    
+    
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+        print("error")
+    }
+    
+    
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let userLocation:CLLocation = locations[0] as CLLocation
+        locationManger.stopUpdatingLocation()
+        let location = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)
+        let span = MKCoordinateSpanMake(0.05, 0.05)
+        let region = MKCoordinateRegion(center: location, span: span)
+        mapView.setRegion(region, animated: true)
         
-        
-        
-        
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = location
+        annotation.title = "Your location"
+        mapView.addAnnotation(annotation)
         
     }
+    
     
     
     
 }
 
-extension StoresMapViewController: CLLocationManagerDelegate {
-    
-    
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if startLocation == nil {
-            startLocation = locations.first
-            print(startLocation)
-        } else {
-            guard let latest = locations.first else {return}
-            let distanceInMeters = startLocation?.distanceFromLocation(latest)
-            print("distance in meters: \(distanceInMeters!)")
-        }
-    }
-    
-    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
-        
-    }
-    
-    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-        if status == .AuthorizedAlways || status == .AuthorizedWhenInUse {
-            locationManger?.requestLocation()
-            locationManger?.allowsBackgroundLocationUpdates = true
-        }
-    }
-    
-}
+
 
 
 

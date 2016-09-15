@@ -16,6 +16,8 @@ class SearchResultsTableViewController: UITableViewController {
     
         override func viewDidLoad() {
         super.viewDidLoad()
+            tableView.rowHeight = UITableViewAutomaticDimension
+            tableView.estimatedRowHeight = 70.0
         tableView.reloadData()
     }
     
@@ -32,6 +34,8 @@ class SearchResultsTableViewController: UITableViewController {
         
         let recipe = filteredRecipes[indexPath.item]
         cell?.updateCellWithRecipe(recipe)
+        cell?.layoutSubviews1(RecipeController.sharedController.recipes[indexPath.row])
+
         resignFirstResponder()
         
         return cell ?? CustomRecipeTableViewCell()

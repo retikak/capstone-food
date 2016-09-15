@@ -10,7 +10,6 @@ import UIKit
 
 class GroceryListTableViewController: UITableViewController, UITextFieldDelegate {
     
-    
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var addItemTextField: UITextField!
     
@@ -52,8 +51,6 @@ class GroceryListTableViewController: UITableViewController, UITextFieldDelegate
         tableView.reloadData()
     }
     
-    
-    
     // MARK: - Table view data source
     
     
@@ -69,13 +66,10 @@ class GroceryListTableViewController: UITableViewController, UITextFieldDelegate
     }
     
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == UITableViewCellEditingStyle.Delete {
+        if editingStyle == .Delete {
             GroceryController.items.removeAtIndex(indexPath.row)
             NSUserDefaults.standardUserDefaults().setObject(GroceryController.items, forKey: "items")
             tableView.reloadData()
         }
     }
-    
-    
-    
 }
