@@ -16,14 +16,17 @@ class RecipeListTableViewController: UITableViewController, UISearchResultsUpdat
     var spinner = UIActivityIndicatorView()
     var loadingLabel = UILabel()
     
-    // Indian flag loading image
-    let tempImageView = UIImageView(image: UIImage(named: "flag"))
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tableView.backgroundColor = UIColor(red: 243/255.0, green: 236/255.0, blue: 226/255.0, alpha: 1)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tabBarController?.tabBar.backgroundColor = UIColor(red: 255/255.0, green: 127/255.0, blue: 80/255.0, alpha: 1)
+        
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 70.0
-        self.tableView.backgroundView = tempImageView
     
         setUpSearchController()
         self.setLoadingScreen()
@@ -117,6 +120,8 @@ class RecipeListTableViewController: UITableViewController, UISearchResultsUpdat
             let recipe = RecipeController.sharedController.recipes[indexPath.row]
             cell.updateCellWithRecipe(recipe)
             cell.layoutSubviews1(RecipeController.sharedController.recipes[indexPath.row])
+            cell.backgroundColor = UIColor(red: 243/255.0, green: 236/255.0, blue: 226/255.0, alpha: 1)
+
             return cell
         } else {
             return CustomRecipeTableViewCell()

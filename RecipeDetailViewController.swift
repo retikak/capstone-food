@@ -33,8 +33,11 @@ class RecipeDetailViewController: UIViewController, UITableViewDelegate, UITable
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         if let recipe = recipe {
             updateWithRecipe(recipe)
+            updatewithImage(recipe)
+            
         }
         
         recipeImage.layer.borderColor = UIColor.lightGrayColor().CGColor
@@ -84,6 +87,13 @@ class RecipeDetailViewController: UIViewController, UITableViewDelegate, UITable
         }
         
         
+        
+
+        
+            
+        
+        
+        
         title = recipe.recipeName
         self.recipeCourseLabel.text = "Course: \(recipe.course[0] ?? "")"
         self.recipeNameLabel.text = recipe.recipeName
@@ -99,21 +109,45 @@ class RecipeDetailViewController: UIViewController, UITableViewDelegate, UITable
         }
         
         GroceryController.ingredients = recipe.ingredients
-        let mainImage = recipe.mainImages
-        if let url = NSURL(string: mainImage) {
-            
-            ImageController.fetchImageAtURL(url) { (mainImage) in
-                if let image = mainImage {
-                    self.recipeImage.image = image
-                    
-                    self.recipeImage.layer.cornerRadius = 5.0
-                    self.recipeImage.clipsToBounds = true
-                    self.recipeImage.layer.masksToBounds = true
-                    self.recipeImage.contentMode = UIViewContentMode.ScaleAspectFill
-                }
-            }
-        }
+       // let mainImage = recipe.mainImages
         
+//        if let url = NSURL(string: mainImage) {
+//            
+//            ImageController.fetchImageAtURL(url) { (mainImage) in
+//                if let image = mainImage {
+//                    self.recipeImage.image = image
+//                    
+//                    self.recipeImage.layer.cornerRadius = 5.0
+//                    self.recipeImage.clipsToBounds = true
+//                    self.recipeImage.layer.masksToBounds = true
+//                    self.recipeImage.contentMode = UIViewContentMode.ScaleAspectFill
+//                }
+//            }
+//        }
+//        
+   }
+    func updatewithImage(recipe: Recipe) {
+        RecipeController.sharedController.getLargeImage(recipe) { (largeImage) in
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                print("the large image is \(largeImage)")
+                if let url = NSURL(string: largeImage) {
+                    ImageController.fetchImageAtURL(url, completion: { (image) in
+                        
+                    
+                        if let image = image {
+                            self.recipeImage.image = image
+                            
+                            self.recipeImage.layer.cornerRadius = 5.0
+                            self.recipeImage.clipsToBounds = true
+                            self.recipeImage.layer.masksToBounds = true
+                            self.recipeImage.contentMode = UIViewContentMode.ScaleAspectFill
+                        }
+                    })
+                }
+                
+            })
+            
+        }
     }
     
     func secondsToHoursMinutesSeconds (seconds : Int) -> (Int, Int, Int) {
@@ -132,7 +166,8 @@ class RecipeDetailViewController: UIViewController, UITableViewDelegate, UITable
             
             cell.backgroundColor = UIColor.whiteColor()
         } else {
-            cell.backgroundColor = UIColor.whiteColor()
+            cell.backgroundColor = UIColor(red: 255/255.0, green: 236/255.0, blue: 226/255.0, alpha: 1)
+
         }
         
         cell.textLabel?.text =

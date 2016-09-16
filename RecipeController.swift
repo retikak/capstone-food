@@ -12,22 +12,18 @@ protocol RecipeControllerDelegate: class {
     func recipesChanged()
 }
 
-
 class RecipeController {
     static let sharedController = RecipeController()
     weak var delegate: RecipeControllerDelegate?
     
     private (set) var recipes: [Recipe] = [] {
-        
         didSet {
-            
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.delegate?.recipesChanged()
             })
         }
-        
     }
-
+    
     private let baseURLKey = "https://api.yummly.com/v1"
     private let apiKey = "db906b1bb9aa10be45ffb3d4676d45e8"
     private let appIdKey = "edd3f7af"
@@ -99,6 +95,27 @@ class RecipeController {
         }
     }
     
+    func getLargeImage(recipe: Recipe, completion: (largeImage: String) ->Void) {
+        let id = recipe.Id
+        let completeidString = "http://api.yummly.com/v1/api/recipe"+"/\(id)?"
+        let baseURLForDirections = NSURL(string: completeidString)
+        let urlParameters = ["_app_id": appIdKey, "_app_key": apiKey]
+        
+        if let url = baseURLForDirections {
+            NetworkController.performRequestForURL(url, httpMethod: .Get, urlParameters: urlParameters, body: nil, completion: { (data, error) in
+                if let data = data,
+                    let jsonAnyObject = try? NSJSONSerialization.JSONObjectWithData(data, options: []),
+                    let jsonDictionary = jsonAnyObject as? [String: AnyObject],
+                    let imagesArrayOfDictionary = jsonDictionary["images"] as? [[String: AnyObject]],
+                    let imageDict = imagesArrayOfDictionary.first?["hostedLargeUrl"] as? String{
+                    completion(largeImage: imageDict)
+                }else {
+                    completion(largeImage: "")
+                }
+            })
+        }
+    }
+    
     
     func getRecipesWithSearchTerm(searchTerm: String, completion: (success: Bool, recipes: [Recipe]) -> Void) {
         
@@ -117,10 +134,6 @@ class RecipeController {
             })
         }
     }
-    
-    
-    
-    
     
     func getAllRecipes(completion:(recipes: [Recipe]) -> Void) {
         print("made a network call")

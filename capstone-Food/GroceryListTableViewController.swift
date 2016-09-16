@@ -15,6 +15,7 @@ class GroceryListTableViewController: UITableViewController, UITextFieldDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         if NSUserDefaults.standardUserDefaults().objectForKey("items") !=  nil {
             GroceryController.items = NSUserDefaults.standardUserDefaults().objectForKey("items") as! [String]
         }

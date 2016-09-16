@@ -2,11 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "Vegetarian Food-50-1.png",
+      "filename" : "pen_1.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "pen_1-1.png",
       "scale" : "2x"
     },
     {

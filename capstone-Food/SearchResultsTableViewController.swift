@@ -16,6 +16,7 @@ class SearchResultsTableViewController: UITableViewController {
     
         override func viewDidLoad() {
         super.viewDidLoad()
+            self.tabBarController?.tabBar.backgroundColor = UIColor(red: 255/255.0, green: 127/255.0, blue: 80/255.0, alpha: 1)
             tableView.rowHeight = UITableViewAutomaticDimension
             tableView.estimatedRowHeight = 70.0
         tableView.reloadData()

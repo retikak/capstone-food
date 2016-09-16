@@ -27,6 +27,7 @@ class CustomRecipeTableViewCell: UITableViewCell {
         super.awakeFromNib()
         
         
+        
     }
     func layoutSubviews1(recipe:Recipe) {
         let imageView1 = UIImageView(frame: CGRect(x: 0, y: 0, width: 15, height: 15))
@@ -88,6 +89,7 @@ class CustomRecipeTableViewCell: UITableViewCell {
     }
     
     func updateCellWithRecipe(recipe: Recipe) {
+        
         
         //let recipeImage = recipe.mainImages
         

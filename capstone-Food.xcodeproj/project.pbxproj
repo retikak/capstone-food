@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		79052B431D77912500B8F3F6 /* GroceryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79052B421D77912500B8F3F6 /* GroceryController.swift */; };
+		790E6EAB1D8C688A0087333F /* list.png in Resources */ = {isa = PBXBuildFile; fileRef = 790E6EAA1D8C688A0087333F /* list.png */; };
 		791147821D6F696600E1B932 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791147811D6F696600E1B932 /* AppDelegate.swift */; };
 		791147871D6F696600E1B932 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 791147851D6F696600E1B932 /* Main.storyboard */; };
 		791147891D6F696600E1B932 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 791147881D6F696600E1B932 /* Assets.xcassets */; };
@@ -28,6 +29,7 @@
 
 /* Begin PBXFileReference section */
 		79052B421D77912500B8F3F6 /* GroceryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroceryController.swift; sourceTree = "<group>"; };
+		790E6EAA1D8C688A0087333F /* list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = list.png; sourceTree = "<group>"; };
 		7911477E1D6F696600E1B932 /* capstone-Food.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "capstone-Food.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		791147811D6F696600E1B932 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		791147861D6F696600E1B932 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 				791147A21D6FA75100E1B932 /* ModelControllers */,
 				791147A11D6FA74200E1B932 /* ViewControllers */,
 				791147881D6F696600E1B932 /* Assets.xcassets */,
+				790E6EAA1D8C688A0087333F /* list.png */,
 				7911478A1D6F696600E1B932 /* LaunchScreen.storyboard */,
 				7911478D1D6F696600E1B932 /* Info.plist */,
 			);
@@ -200,6 +203,7 @@
 				7911478C1D6F696600E1B932 /* LaunchScreen.storyboard in Resources */,
 				791147891D6F696600E1B932 /* Assets.xcassets in Resources */,
 				791147871D6F696600E1B932 /* Main.storyboard in Resources */,
+				790E6EAB1D8C688A0087333F /* list.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
