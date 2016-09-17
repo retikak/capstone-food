@@ -52,7 +52,7 @@
                   moduleName = "capstone-Food"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/retika/Desktop/capstone-Food/RecipeController.swift"
-                  timestampString = "495745844.294475"
+                  timestampString = "495760233.595026"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "106"
@@ -67,7 +67,7 @@
                   moduleName = "capstone-Food"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/retika/Desktop/capstone-Food/RecipeController.swift"
-                  timestampString = "495745844.294651"
+                  timestampString = "495760233.595198"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "106"
@@ -75,6 +75,22 @@
                   offsetFromSymbolStart = "105">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "capstone-Food/StoresMapViewController.swift"
+            timestampString = "495759640.307971"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "viewDidAppear(_:)"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

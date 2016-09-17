@@ -2,11 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "flag.jpg",
+      "filename" : "map.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "map-1.png",
       "scale" : "2x"
     },
     {
