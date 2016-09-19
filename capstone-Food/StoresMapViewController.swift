@@ -56,9 +56,7 @@ class StoresMapViewController: UIViewController, CLLocationManagerDelegate {
         locationSearchTable?.handleMapSearchDelegate = self
         
     }
-    
-    
-    
+ 
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
         print("error")
     }
@@ -126,7 +124,7 @@ extension StoresMapViewController: MKMapViewDelegate {
         button.setTitle("Go", forState: .Normal)
         button.tintColor = UIColor.redColor()
         button.titleLabel?.text = "Directions"
-        button.addTarget(self, action: "getDirections", forControlEvents: .TouchUpInside)
+        button.addTarget(self, action: #selector(StoresMapViewController.getDirections), forControlEvents: .TouchUpInside)
         pinView?.leftCalloutAccessoryView = button
         return pinView
     }

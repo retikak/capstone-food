@@ -32,7 +32,7 @@
 		79052B421D77912500B8F3F6 /* GroceryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroceryController.swift; sourceTree = "<group>"; };
 		790E6EAA1D8C688A0087333F /* list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = list.png; sourceTree = "<group>"; };
 		790E6EAC1D8C88630087333F /* StoresTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoresTableViewController.swift; sourceTree = "<group>"; };
-		7911477E1D6F696600E1B932 /* capstone-Food.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "capstone-Food.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7911477E1D6F696600E1B932 /* SpiceHub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpiceHub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		791147811D6F696600E1B932 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		791147861D6F696600E1B932 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		791147881D6F696600E1B932 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -76,7 +76,7 @@
 		7911477F1D6F696600E1B932 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7911477E1D6F696600E1B932 /* capstone-Food.app */,
+				7911477E1D6F696600E1B932 /* SpiceHub.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -142,9 +142,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		7911477D1D6F696600E1B932 /* capstone-Food */ = {
+		7911477D1D6F696600E1B932 /* SpiceHub */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 791147901D6F696600E1B932 /* Build configuration list for PBXNativeTarget "capstone-Food" */;
+			buildConfigurationList = 791147901D6F696600E1B932 /* Build configuration list for PBXNativeTarget "SpiceHub" */;
 			buildPhases = (
 				7911477A1D6F696600E1B932 /* Sources */,
 				7911477B1D6F696600E1B932 /* Frameworks */,
@@ -154,9 +154,9 @@
 			);
 			dependencies = (
 			);
-			name = "capstone-Food";
+			name = SpiceHub;
 			productName = "capstone-Food";
-			productReference = 7911477E1D6F696600E1B932 /* capstone-Food.app */;
+			productReference = 7911477E1D6F696600E1B932 /* SpiceHub.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -193,7 +193,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				7911477D1D6F696600E1B932 /* capstone-Food */,
+				7911477D1D6F696600E1B932 /* SpiceHub */,
 			);
 		};
 /* End PBXProject section */
@@ -347,7 +347,6 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "capstone-Food/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.oppfish.capstone-Food";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -364,7 +363,6 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "capstone-Food/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.oppfish.capstone-Food";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -384,7 +382,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		791147901D6F696600E1B932 /* Build configuration list for PBXNativeTarget "capstone-Food" */ = {
+		791147901D6F696600E1B932 /* Build configuration list for PBXNativeTarget "SpiceHub" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				791147911D6F696600E1B932 /* Debug */,

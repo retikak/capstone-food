@@ -10,14 +10,14 @@
         <!-- Recipes-->
         <scene sceneID="E2R-f5-AMM">
             <objects>
-                <tableViewController id="utC-JA-hyg" customClass="RecipeListTableViewController" customModule="capstone_Food" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="utC-JA-hyg" customClass="RecipeListTableViewController" customModule="Indian_Recipes" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="176" sectionHeaderHeight="28" sectionFooterHeight="28" id="IA9-8D-Cxi">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.95294117647058818" green="0.92549019607843142" blue="0.88627450980392153" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="tintColor" red="0.95294117649999999" green="0.92549019610000005" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" indentationLevel="1" indentationWidth="10" reuseIdentifier="RecipeCell" rowHeight="176" id="Orw-4v-3qx" customClass="CustomRecipeTableViewCell" customModule="capstone_Food" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" indentationLevel="1" indentationWidth="10" reuseIdentifier="RecipeCell" rowHeight="176" id="Orw-4v-3qx" customClass="CustomRecipeTableViewCell" customModule="Indian_Recipes" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="92" width="600" height="176"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Orw-4v-3qx" id="61I-wJ-mwL">
@@ -99,7 +99,7 @@
         <!--Recipe Detail-->
         <scene sceneID="byD-GC-ho3">
             <objects>
-                <viewController storyboardIdentifier="detailVC" title="Recipe Detail" id="p70-Cv-NHV" customClass="RecipeDetailViewController" customModule="capstone_Food" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="detailVC" title="Recipe Detail" id="p70-Cv-NHV" customClass="RecipeDetailViewController" customModule="Indian_Recipes" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="cOw-Ft-XJk"/>
                         <viewControllerLayoutGuide type="bottom" id="0Wk-Rw-VnZ"/>
@@ -215,7 +215,7 @@
         <!--Grocery List-->
         <scene sceneID="LKj-oX-DMo">
             <objects>
-                <tableViewController id="RtH-Gn-Nhf" customClass="GroceryListTableViewController" customModule="capstone_Food" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="RtH-Gn-Nhf" customClass="GroceryListTableViewController" customModule="Indian_Recipes" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Owz-YT-iWW">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -224,18 +224,20 @@
                             <rect key="frame" x="0.0" y="64" width="600" height="48"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <stackView opaque="NO" contentMode="scaleToFill" spacing="23" translatesAutoresizingMaskIntoConstraints="NO" id="F4W-U4-DzF">
-                                    <rect key="frame" x="8" y="8" width="592" height="30"/>
+                                <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="F4W-U4-DzF">
+                                    <rect key="frame" x="8" y="8" width="584" height="34"/>
                                     <subviews>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="+ Add Item" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oAd-po-uj4">
-                                            <rect key="frame" x="0.0" y="0.0" width="427" height="30"/>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="+ Add Item" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oAd-po-uj4">
+                                            <rect key="frame" x="0.0" y="0.0" width="433" height="34"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ra6-JQ-95z">
-                                            <rect key="frame" x="450" y="0.0" width="143" height="30"/>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ra6-JQ-95z">
+                                            <rect key="frame" x="441" y="0.0" width="144" height="34"/>
                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            <state key="normal" title="Add"/>
+                                            <state key="normal" title="Add">
+                                                <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
                                             <connections>
                                                 <action selector="AddToListButtonTapped:" destination="RtH-Gn-Nhf" eventType="touchUpInside" id="WKl-xX-jxS"/>
                                             </connections>
@@ -249,7 +251,7 @@
                             <color key="backgroundColor" red="0.73725490199999999" green="0.73725490199999999" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstItem="F4W-U4-DzF" firstAttribute="leading" secondItem="qOH-zx-bu9" secondAttribute="leading" constant="8" id="Crj-j7-3BV"/>
-                                <constraint firstAttribute="trailing" secondItem="F4W-U4-DzF" secondAttribute="trailing" id="WKN-kx-OQZ"/>
+                                <constraint firstAttribute="trailing" secondItem="F4W-U4-DzF" secondAttribute="trailing" constant="8" id="WKN-kx-OQZ"/>
                                 <constraint firstItem="F4W-U4-DzF" firstAttribute="top" secondItem="qOH-zx-bu9" secondAttribute="top" constant="8" id="ggW-Vd-M90"/>
                             </constraints>
                         </view>
@@ -292,13 +294,13 @@
         <!--Search Results Table View Controller-->
         <scene sceneID="GTe-i3-0wd">
             <objects>
-                <tableViewController storyboardIdentifier="resultsController" id="HSv-TM-iVI" customClass="SearchResultsTableViewController" customModule="capstone_Food" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="resultsController" id="HSv-TM-iVI" customClass="SearchResultsTableViewController" customModule="Indian_Recipes" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="216" sectionHeaderHeight="28" sectionFooterHeight="28" id="y38-fm-ENp">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" indentationLevel="1" indentationWidth="10" reuseIdentifier="ResultCell" rowHeight="176" id="Z0M-fi-wEI" customClass="CustomRecipeTableViewCell" customModule="capstone_Food" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" indentationLevel="1" indentationWidth="10" reuseIdentifier="ResultCell" rowHeight="176" id="Z0M-fi-wEI" customClass="CustomRecipeTableViewCell" customModule="Indian_Recipes" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="600" height="176"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Z0M-fi-wEI" id="hBH-m8-nAL">
@@ -376,7 +378,7 @@
         <!--Stores Map View Controller-->
         <scene sceneID="ox9-67-NCk">
             <objects>
-                <viewController id="2N7-Xm-5lK" customClass="StoresMapViewController" customModule="capstone_Food" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="2N7-Xm-5lK" customClass="StoresMapViewController" customModule="Indian_Recipes" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="w82-AE-ddS"/>
                         <viewControllerLayoutGuide type="bottom" id="w19-jA-GKR"/>
@@ -385,7 +387,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zsV-R7-FWn">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="zsV-R7-FWn">
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="300" id="TbY-Fs-XAg"/>
@@ -422,7 +424,7 @@
         <!--Stores Table View Controller-->
         <scene sceneID="j37-Dm-1R5">
             <objects>
-                <tableViewController storyboardIdentifier="LocationSearchTable" id="sFr-jv-byj" customClass="StoresTableViewController" customModule="capstone_Food" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="LocationSearchTable" id="sFr-jv-byj" customClass="StoresTableViewController" customModule="Indian_Recipes" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="zSw-BP-E4x">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -21,6 +21,8 @@ class GroceryListTableViewController: UITableViewController, UITextFieldDelegate
         }
         self.addItemTextField.delegate = self
         
+        addButton.layer.cornerRadius = 5.0
+        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -63,7 +65,7 @@ class GroceryListTableViewController: UITableViewController, UITextFieldDelegate
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("groceryList", forIndexPath: indexPath)
         cell.textLabel?.text = GroceryController.items[indexPath.row]
-               return cell
+        return cell
     }
     
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
